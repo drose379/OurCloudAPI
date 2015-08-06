@@ -7,9 +7,9 @@ class newPost {
 	public function run() {
 		$post = json_decode("php://input");
 
-		$user = $post["user"];
-		$zone = $post["zone"];
-		$postText = $post["postText"];
+		$user = $post[0];
+		$zone = $post[1];
+		$postText = $post[2];
 
 		$this->insert($user,$zone,$postText)
 

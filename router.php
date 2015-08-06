@@ -4,9 +4,17 @@ require 'newPost.php';
 
 class Router {
 
-	private $routes = [
-		"/newPost" => [new newPost,"run"] 
-	];
+	private $routes = [];
+
+	public function __construct() {
+		$this->loadRoutes();
+	}
+
+	public function loadRoutes() {
+		$this->routes = [
+			"/newPost", [new newPost,"run"]
+		]
+	}
 
 	public function match($path) {
 		foreach ($this->routes as $route => $action) {
