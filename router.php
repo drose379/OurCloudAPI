@@ -5,8 +5,8 @@ require 'newPost.php';
 class Router {
 
 	private $routes = [
-		"newPost" => [new newPost,"run"] 
-	]
+		"/newPost" => [new newPost,"run"] 
+	];
 
 	public function match($path) {
 		foreach ($this->routes as $route => $action) {
