@@ -11,7 +11,7 @@ class newPost {
 		$zone = $post[1];
 		$postText = $post[2];
 
-		$this->insert($user,$zone,$postText)
+		$this->insert($user,$zone,$postText);
 
 	}
 
