@@ -13,7 +13,7 @@ class Router {
 	public function loadRoutes() {
 		$this->routes = [
 			"/newPost", [new newPost,"run"]
-		]
+		];
 	}
 
 	public function match($path) {
