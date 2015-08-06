@@ -5,7 +5,7 @@ require 'connect.php';
 class newPost {
 
 	public function run() {
-		$post = json_decode("php://input",true);
+		$post = json_decode(file_get_contents("php://input"),true);
 
 		$user = $post[0];
 		$zone = $post[1];
