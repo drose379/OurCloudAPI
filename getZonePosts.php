@@ -8,11 +8,12 @@ class getZonePosts {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$zoneId = $post[0];
-		
+
 		$this->getZonePosts($zoneId);
 	}
 
 	public function getZonePosts($zoneId) {
+		/*
 		$posts = [];
 
 		$con = DBConnect::get();
@@ -24,6 +25,11 @@ class getZonePosts {
 		}
 
 		echo "test";
+		*/
+		echo "testing";
 	}
+
+	
+
 
 }
