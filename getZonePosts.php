@@ -13,7 +13,7 @@ class getZonePosts {
 	}
 
 	public function getZonePosts($zoneId) {
-		$posts;
+		$posts = [];
 
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT user,user_photo,postText FROM zone_posts WHERE zone = :zoneId");
@@ -23,7 +23,7 @@ class getZonePosts {
 			$posts[] = $result;
 		}
 
-		echo json_encode($posts);
+		echo json_encode($posts[0]);
 	}
 
 }
