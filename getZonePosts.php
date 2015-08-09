@@ -9,7 +9,7 @@ class getZonePosts {
 
 		$zoneId = $post[0];
 
-		$this->getZonePosts($zoneId);
+		echo "called run";
 	}
 
 	public function getZonePosts($zoneId) {
