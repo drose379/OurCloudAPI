@@ -9,7 +9,11 @@ class getZonePosts {
 
 		$zoneId = $post[0];
 
-		echo "called run";
+		$this->grabPosts();
+	}
+
+	public function grabPosts() {
+		echo "grabbing!";
 	}
 
 
