@@ -13,10 +13,10 @@ class getZonePosts {
 	}
 
 	public function getZonePosts($zoneId) {
-		$posts = [];
+		$posts;
 
 		$con = DBConnect::get();
-		$stmt = $con->prepare("SELECT user,postText FROM zone_posts WHERE zone = :zoneId");
+		$stmt = $con->prepare("SELECT user,user_photo,postText FROM zone_posts WHERE zone = :zoneId");
 		$stmt->bindParam(':zoneId',$zoneId);
 		$stmt->execute();
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
