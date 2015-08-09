@@ -9,10 +9,10 @@ class getZonePosts {
 
 		$zoneId = $post[0];
 
-		$this->grabPosts();
+		$this->grabPosts($zoneId);
 	}
 
-	public function grabPosts() {
+	public function grabPosts($zoneId) {
 		$posts = array();
 
 		$con = DBConnect::get();
