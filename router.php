@@ -1,6 +1,7 @@
 <?php
 
 require 'newPost.php';
+require 'getZonePosts.php';
 
 class Router {
 
@@ -12,7 +13,8 @@ class Router {
 
 	public function loadRoutes() {
 		$this->routes = [
-			"/newPost" => [new newPost,"run"]
+			"/newPost" => [new newPost,"run"],
+			"/getZonePosts" [new getZonePosts,"run"]
 		];
 	}
 
