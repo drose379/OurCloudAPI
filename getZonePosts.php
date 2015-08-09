@@ -8,7 +8,7 @@ class getZonePosts {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$zoneId = $post[0];
-
+		echo "testing";
 		$this->getZonePosts($zoneId);
 	}
 
@@ -22,8 +22,6 @@ class getZonePosts {
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$posts[] = $result;
 		}
-
-		echo "TEST";
 	}
 
 }
