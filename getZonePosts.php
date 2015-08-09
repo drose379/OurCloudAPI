@@ -23,7 +23,7 @@ class getZonePosts {
 			$posts[] = $result;
 		}
 
-		echo json_encode($posts);
+		//echo json_encode($posts);
 	}
 
 }
