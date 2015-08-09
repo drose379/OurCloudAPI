@@ -14,7 +14,7 @@ class Router {
 	public function loadRoutes() {
 		$this->routes = [
 			"/newPost" => [new newPost,"run"],
-			"/getZonePosts" [new getZonePosts,"run"]
+			"/getZonePosts" => [new getZonePosts,"run"]
 		];
 	}
 
