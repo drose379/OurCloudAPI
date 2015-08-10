@@ -8,12 +8,23 @@ class newPost {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$user = $post[0];
-		$userPhoto = $post[1];
+		$userPhoto = $this->formatUrl($post[1]);
 		$zone = $post[2];
 		$postText = $post[3];
 
 		$this->insert($user,$userPhoto,$zone,$postText);
 
+	}
+
+	/**
+	 * Used to format url to change photo size to 65 instead of 50
+	 * Google API returns a url of photo and sz=X at the end of URL for image size
+	 * Grab everything after = and change it to correct size
+	 */
+	public function formatUrl($imageUrl) {
+		$urlArray = preg_split("/\=/",$imageUrl);
+		$urlArray[1] = "=65";
+		return implode($urlArray);
 	}
 
 	public function insert($user,$userPhoto,$zone,$post) {
