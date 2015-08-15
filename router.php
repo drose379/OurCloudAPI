@@ -1,6 +1,8 @@
 <?php
 
 require 'newPost.php';
+require 'newPostWithImage.php';
+
 require 'getZonePosts.php';
 
 require 'postImageUpload.php';
@@ -16,6 +18,7 @@ class Router {
 	public function loadRoutes() {
 		$this->routes = [
 			"/newPost" => [new newPost,"run"],
+			"/newPostWithImage" => [new newPostWithImage,"run"]
 			"/getZonePosts" => [new getZonePosts,"run"],
 			"/postImageUpload" => [new postImageUpload,"run"]
 		];
