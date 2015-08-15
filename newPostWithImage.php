@@ -27,6 +27,7 @@ class newPostWithImage {
 	}
 
 	public function insert($user,$userPhoto,$zone,$post,$postImageUrl) {
+		error_log($postImageUrl);
 		$con  = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user,user_photo,zone,postText,postImage) VALUES (:user,:user_photo,:zone,:postText,:postImage)");
 		$stmt->bindParam(':user',$user);
