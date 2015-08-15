@@ -18,7 +18,7 @@ class Router {
 	public function loadRoutes() {
 		$this->routes = [
 			"/newPost" => [new newPost,"run"],
-			"/newPostWithImage" => [new newPostWithImage,"run"]
+			"/newPostWithImage" => [new newPostWithImage,"run"],
 			"/getZonePosts" => [new getZonePosts,"run"],
 			"/postImageUpload" => [new postImageUpload,"run"]
 		];
