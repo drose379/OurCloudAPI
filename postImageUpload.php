@@ -8,11 +8,10 @@ class postImageUpload {
 
 		$imageResource = imagecreatefromjpeg($imageTmpName);
 		$randomName = rand(1,10000000000000000).".jpg";
-		$path = "http://104.236.15.47/OurCloudAPI/PostImages/" . $randomName;
+		$path = "/var/www/OurCloudAPI/PostImages/" . $randomName;
 		$imageFile = imagejpeg($imageResource,$path);
 
-		echo $path;
-
+		echo "http://104.236.15.47/OurCloudAPI/PostImages/" . $randomName;
 	}
 
 
