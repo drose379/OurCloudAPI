@@ -25,7 +25,7 @@ class newPost {
 			$this->insert($userId,$zone,$postText);
 		} else {
 			$this->createUser($user,$user,$userPhoto);
-			$this->insert($userId,$user,$zone,$postText);
+			$this->insert($userId,$zone,$postText);
 		}
 
 	}
