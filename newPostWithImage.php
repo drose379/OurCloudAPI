@@ -15,7 +15,7 @@ class newPostWithImage {
 		if ($this->userExists($userId)) {
 			$this->insert($userId,$zone,$postText,$postImageUrl);
 		} else {
-			$this->createUser($userId,$userName,$userPhoto);
+			$this->createUser($userId,$user,$userPhoto);
 			$this->insert($userId,$zone,$postText,$postImageUrl);
 		}
 
@@ -55,7 +55,7 @@ class newPostWithImage {
 
 
 	public function insert($userId,$zone,$post,$postImageUrl) {
-		error_log($postImageUrl);
+
 		$con  = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postImage) VALUES (:id,:zone,:postText,:postImage)");
 		$stmt->bindParam(':id',$userId);
