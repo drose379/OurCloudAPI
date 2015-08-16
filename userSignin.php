@@ -17,7 +17,7 @@ class userSignIn {
 		$userPhoto = $post[2];
 
 		if(!$this->userExists($userId)) {
-			//register a new user with the info above
+			error_log("user does not exist");
 		}
 	}
 
@@ -27,7 +27,8 @@ class userSignIn {
 		$stmt->bindParam(':userid',$userId);
 		$stmt->execute();
 
-		error_log(implode(",",$stmt->fetch()));
+		$exists = $stmt->fetch()[0] == 0 ? false : true;
+		return $exists;
 	}
 
 }
