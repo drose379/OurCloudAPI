@@ -22,6 +22,7 @@ class newPost {
 
 		if ($this->userExists($userId)) {
 			//insert into zone_posts
+			error_log("Does exist");
 		} else {
 			error_log("Does not exist");
 		}
