@@ -45,7 +45,8 @@ class newPost {
 		$stmt->bindParam(':userId',$userId);
 		$stmt->execute();
 		$result = $stmt->fetch();
-		error_log($result[0]);
+
+		if($result[0] == null) {error_log("Null");}
 	}
 
 	public function insert($user,$userPhoto,$zone,$post) {
