@@ -18,6 +18,8 @@ class userSignIn {
 
 		if(!$this->userExists($userId)) {
 			error_log("user does not exist");
+		} else {
+			error_log("user does exist");
 		}
 	}
 
