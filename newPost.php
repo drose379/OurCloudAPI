@@ -55,7 +55,7 @@ class newPost {
 
 	public function createUser($userId,$userName,$userPhoto) {
 		$con = DBConnect::get();
-		$stmt = $con->preapre("INSERT INTO users (user_id,user_name,user_image) VALUES (:id,:name,:photo)");
+		$stmt = $con->prepare("INSERT INTO users (user_id,user_name,user_image) VALUES (:id,:name,:photo)");
 		$stmt->bindParam(':id',$userId);
 		$stmt->bindParam(':name',$userName);
 		$stmt->bindParam(':photo',$userPhoto);
