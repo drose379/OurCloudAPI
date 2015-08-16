@@ -20,8 +20,6 @@ class newPost {
 		$zone = $post[3];
 		$postText = $post[4];
 
-		error_log($userId);
-
 		if ($this->userExists($userId)) {
 			//insert into zone_posts
 		} else {
@@ -46,9 +44,8 @@ class newPost {
 		$stmt = $con->prepare("SELECT user_id FROM users WHERE user_id = :userId");
 		$stmt->bindParam(':userId',$userId);
 		$stmt->execute();
-		while($result = $stmt->fetch()) {
-			error_log($result);
-		}
+		$result = $stmt->fetch();
+		error_log(count($result));
 	}
 
 	public function insert($user,$userPhoto,$zone,$post) {
