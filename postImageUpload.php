@@ -12,6 +12,8 @@ class postImageUpload {
 		$imageFile = imagejpeg($imageResource,$path);
 
 		echo "http://104.236.15.47/OurCloudAPI/PostImages/" . $randomName;
+
+		//space is being added somewhere before http://
 	}
 
 

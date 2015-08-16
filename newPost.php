@@ -4,15 +4,27 @@ require_once 'connect.php';
 
 class newPost {
 
+	/**
+	 * Need to implement new users table to creating new posts
+	 * When new post is uploaded with user display name, check if display name exists in users table
+	 * If YES, grab the users unique id and save that with the post (instead of all of users info)
+	 * If NO, create a new user record, and return the users new unique id to be saved
+	 */
+
 	public function run() {
 		$post = json_decode(file_get_contents("php://input"),true);
 
-		$user = $post[0];
-		$userPhoto = $this->formatUrl($post[1]);
-		$zone = $post[2];
-		$postText = $post[3];
+		$userId = $post[0];
+		$user = $post[1];
+		$userPhoto = $this->formatUrl($post[2]);
+		$zone = $post[3];
+		$postText = $post[4];
 
-		$this->insert($user,$userPhoto,$zone,$postText);
+		if ($this->userExists($userId)) {
+			//insert into zone_posts
+		} else {
+
+		}
 
 	}
 
@@ -25,6 +37,16 @@ class newPost {
 		$urlArray = preg_split("/\=/",$imageUrl);
 		$urlArray[1] = "=65";
 		return implode($urlArray);
+	}
+
+	public function userExists($userId) {
+		$con = DBConnect::get();
+		$stmt = $con->prepare("SELECT user_id FROM users WHERE user_id = :userId");
+		$stmt->bindParam(':userId',$userId);
+		$stmt->execute();
+		while($result = $stmt->fetch()) {
+			error_log($result);
+		}
 	}
 
 	public function insert($user,$userPhoto,$zone,$post) {
