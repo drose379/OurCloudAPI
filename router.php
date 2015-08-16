@@ -1,5 +1,6 @@
 <?php
 
+require 'userSignin.php';
 require 'newPost.php';
 require 'newPostWithImage.php';
 
