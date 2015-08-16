@@ -16,7 +16,13 @@ class getZonePosts {
 		$posts = array();
 
 		$con = DBConnect::get();
-		$stmt = $con->prepare("SELECT user,user_photo,postText,postImage FROM zone_posts WHERE zone = :zoneId");
+		$stmt = $con->prepare("SELECT
+			users.user_name,users.user_image,
+			zone_posts.postText,zone_posts.postImage
+			FROM zone_posts
+			JOIN users ON users.user_id = zone_posts.user_id
+			WHERE zone = :zoneId");
+		
 		$stmt->bindParam(':zoneId',$zoneId);
 		$stmt->execute();
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
