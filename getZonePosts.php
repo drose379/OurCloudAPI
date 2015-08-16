@@ -22,7 +22,7 @@ class getZonePosts {
 			FROM zone_posts
 			JOIN users ON users.user_id = zone_posts.user_id
 			WHERE zone = :zoneId");
-		
+
 		$stmt->bindParam(':zoneId',$zoneId);
 		$stmt->execute();
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -30,6 +30,7 @@ class getZonePosts {
 		}
 
 		echo json_encode($posts);
+		error_log($posts);
 	}
 
 
