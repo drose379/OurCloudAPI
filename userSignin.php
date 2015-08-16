@@ -17,6 +17,7 @@ class userSignIn {
 		$userPhoto = $this->formatUrl($post[2]);
 
 		if(!$this->userExists($userId)) {$this->newUser($userId,$userName,$userPhoto);}
+
 	}
 
 	public function userExists($userId) {

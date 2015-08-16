@@ -15,12 +15,11 @@ class newPost {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$userId = $post[0];
-		//$user = $post[1];
-		//$userPhoto = $this->formatUrl($post[2]);
-		$zone = $post[3];
-		$postText = $post[4];
+		$zone = $post[1];
+		$postText = $post[2];
+		$timeMillis = $post[3];
 
-		$this->insert($userId,$zone,$postText);
+		$this->insert($userId,$zone,$postText,$timeMillis);
 	}
 
 	/**
@@ -30,12 +29,13 @@ class newPost {
 	 */
 
 
-	public function insert($userId,$zone,$post) {
+	public function insert($userId,$zone,$post,$postTime) {
 		$con  = DBConnect::get();
-		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText) VALUES (:user_id,:zone,:postText)");
+		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postTime) VALUES (:user_id,:zone,:postText,:time)");
 		$stmt->bindParam(':user_id',$userId);
 		$stmt->bindParam(':zone',$zone);
 		$stmt->bindParam(':postText',$post);
+		$stmt->bindParam(':time',$postTIme);
 		$stmt->execute();
 	}
 
