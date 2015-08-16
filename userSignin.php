@@ -27,7 +27,7 @@ class userSignIn {
 		$stmt->bindParam(':userid',$userId);
 		$stmt->execute();
 
-		error_log($stmt->fetch());
+		error_log(implode(",",$stmt->fetch()));
 	}
 
 }
