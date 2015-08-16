@@ -35,7 +35,7 @@ class newPost {
 		$stmt->bindParam(':user_id',$userId);
 		$stmt->bindParam(':zone',$zone);
 		$stmt->bindParam(':postText',$post);
-		$stmt->bindParam(':time',$postTIme);
+		$stmt->bindParam(':time',$postTime);
 		$stmt->execute();
 	}
 
