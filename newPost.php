@@ -24,7 +24,7 @@ class newPost {
 			//insert into zone_posts
 			$this->insert($userId,$zone,$postText);
 		} else {
-			$this->createUser($user,$user,$userPhoto);
+			$this->createUser($userId,$user,$userPhoto);
 			$this->insert($userId,$zone,$postText);
 		}
 
