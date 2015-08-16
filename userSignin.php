@@ -29,6 +29,11 @@ class userSignIn {
 		return $exists;
 	}
 
+	/**
+	 * Used to format url to change photo size to 65 instead of 50
+	 * Google API returns a url of photo and sz=X at the end of URL for image size
+	 * Grab everything after = and change it to correct size
+	 */
 	public function formatUrl($imageUrl) {
 		$urlArray = preg_split("/\=/",$imageUrl);
 		$urlArray[1] = "=65";
