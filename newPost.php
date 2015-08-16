@@ -46,7 +46,7 @@ class newPost {
 		$stmt->execute();
 		$result = $stmt->fetch();
 
-		boolean $exists = $result[0] == null ? fasle : true;
+		$exists = $result[0] == null ? fasle : true;
 
 		return $exists;
 	}
