@@ -20,6 +20,8 @@ class newPost {
 		$zone = $post[3];
 		$postText = $post[4];
 
+		error_log($userId);
+
 		if ($this->userExists($userId)) {
 			//insert into zone_posts
 		} else {
