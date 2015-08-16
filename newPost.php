@@ -53,6 +53,15 @@ class newPost {
 		return $exists;
 	}
 
+	public function createUser($userId,$userName,$userPhoto) {
+		$con = DBConnect::get();
+		$stmt = $con->preapre("INSERT INTO users (user_id,user_name,user_image) VALUES (:id,:name,:photo)");
+		$stmt->bindParam(':id',$userId);
+		$stmt->bindParam(':name',$userName);
+		$stmt->bindParam(':photo',$userPhoto);
+		$stmt->execute();
+	}
+
 	public function insert($userId,$zone,$post) {
 		$con  = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText) VALUES (:user_id,:zone,:postText)");
