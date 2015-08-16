@@ -30,7 +30,7 @@ class getZonePosts {
 		}
 
 		echo json_encode($posts);
-		error_log(implode(",",$posts));
+		error_log($posts[0]);
 	}
 
 
