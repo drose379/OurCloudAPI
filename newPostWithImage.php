@@ -58,7 +58,7 @@ class newPostWithImage {
 		error_log($postImageUrl);
 		$con  = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postImage) VALUES (:id,:zone,:postText,:postImage)");
-		$stmt->bindParam(':id',$userId)
+		$stmt->bindParam(':id',$userId);
 		$stmt->bindParam(':zone',$zone);
 		$stmt->bindParam(':postText',$post);
 		$stmt->bindParam(':postImage',$postImageUrl);
