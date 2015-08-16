@@ -16,11 +16,7 @@ class userSignIn {
 		$userName = $post[1];
 		$userPhoto = $post[2];
 
-		if(!$this->userExists($userId)) {
-			error_log("user does not exist");
-		} else {
-			error_log("user does exist");
-		}
+		if(!$this->userExists($userId)) {$this->newUser($userId,$userName,$userPhoto);}
 	}
 
 	public function userExists($userId) {
@@ -29,8 +25,19 @@ class userSignIn {
 		$stmt->bindParam(':userid',$userId);
 		$stmt->execute();
 
+		error_log($stmt->fetchColumn());
+
 		$exists = $stmt->fetch()[0] == 0 ? false : true;
 		return $exists;
+	}
+
+	public function newUser($userId,$userName,$userPhoto) {
+		$con = DBCOnnect::get();
+		$stmt = $con->prepare("INSERT INTO users (user_id,user_name,user_image) VALUES (:userid,:username,:userimage)");
+		$stmt->bindParam(':userid',$userId);
+		$stmt->bindParam(':username',$userName);
+		$stmt->bindParam(':userimage',$userPhoto);
+		$stmt->execute();
 	}
 
 }
