@@ -14,7 +14,7 @@ class userSignIn {
 		$post = json_decode(file_get_contents("php://input"),true);
 		$userId = $post[0];
 		$userName = $post[1];
-		$userPhoto = $post[2];
+		$userPhoto = $this->formatUrl($post[2]);
 
 		if(!$this->userExists($userId)) {$this->newUser($userId,$userName,$userPhoto);}
 	}
@@ -28,6 +28,13 @@ class userSignIn {
 		$exists = $stmt->fetchColumn() == 0 ? false : true;
 		return $exists;
 	}
+
+	public function formatUrl($imageUrl) {
+		$urlArray = preg_split("/\=/",$imageUrl);
+		$urlArray[1] = "=65";
+		return implode($urlArray);
+	}
+
 
 	public function newUser($userId,$userName,$userPhoto) {
 		$con = DBCOnnect::get();
