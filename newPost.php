@@ -23,7 +23,7 @@ class newPost {
 		if ($this->userExists($userId)) {
 			//insert into zone_posts
 		} else {
-
+			error_log("Does not exist");
 		}
 
 	}
@@ -46,7 +46,9 @@ class newPost {
 		$stmt->execute();
 		$result = $stmt->fetch();
 
-		if($result[0] == null) {error_log("Null");}
+		boolean $exists = $result[0] == null ? fasle : true;
+
+		return $exists;
 	}
 
 	public function insert($user,$userPhoto,$zone,$post) {
