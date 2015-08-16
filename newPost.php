@@ -22,9 +22,10 @@ class newPost {
 
 		if ($this->userExists($userId)) {
 			//insert into zone_posts
-			error_log("Does exist");
+			$this->insert($userId,$zone,$postText);
 		} else {
-			error_log("Does not exist");
+			$this->createUser($user,$userPhoto);
+			$this->insert($userId,$zone,$postText);
 		}
 
 	}
@@ -52,11 +53,10 @@ class newPost {
 		return $exists;
 	}
 
-	public function insert($user,$userPhoto,$zone,$post) {
+	public function insert($userId,$zone,$post) {
 		$con  = DBConnect::get();
-		$stmt = $con->prepare("INSERT INTO zone_posts (user,user_photo,zone,postText) VALUES (:user,:user_photo,:zone,:postText)");
-		$stmt->bindParam(':user',$user);
-		$stmt->bindParam(':user_photo',$userPhoto);
+		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText) VALUES (:user_id,:zone,:postText)");
+		$stmt->bindParam(':user_id',$userId);
 		$stmt->bindParam(':zone',$zone);
 		$stmt->bindParam(':postText',$post);
 		$stmt->execute();
