@@ -25,9 +25,7 @@ class userSignIn {
 		$stmt->bindParam(':userid',$userId);
 		$stmt->execute();
 
-		error_log($stmt->fetchColumn());
-
-		$exists = $stmt->fetch()[0] == 0 ? false : true;
+		$exists = $stmt->fetchColumn() == 0 ? false : true;
 		return $exists;
 	}
 
