@@ -46,6 +46,14 @@ class zoneIdGrabber {
 				$inRange = json_decode($currentZone[2],true);
 				//need to check for inRange items against $this->networksInRange
 					//if items dont match, unset $matchingZones[$i];
+				//assign correct zoneId to $zoneId, if none match, assign $zoneId to null
+
+				foreach($this->networksInRange as $network) {
+					if(in_array($network, $inRange)) {
+						error_log("Found a match");
+					}
+				}
+
 			}
 
 		} else {
