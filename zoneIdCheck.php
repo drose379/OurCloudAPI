@@ -50,7 +50,12 @@ class zoneIdGrabber {
 	public function createNewZone($con) {
 		//creates a new zone record (generate a random 10 digit number as the zoneId, and return the zoneId)
 		$newZoneId = rand(1,getrandmax());
-		error_log($newZoneId);
+
+		$stmt = $con->preapre("INSERT INTO zones (ID,SSID,inRange) VALUES (:id,:ssid,:inRange)");
+		$stmt->bindParam(':id',$newZoneId);
+		$stmt->bindParam(':ssid',$this->zoneSSID);
+		$stmt->bindParam(':inRange',$this->networksInRange);
+		$stmt->execute();
 	}
 
 
