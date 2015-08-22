@@ -12,7 +12,7 @@ class zoneIdGrabber {
 		$this->zoneSSID = $post[0];
 		$this->networksInRange = $post[1];
 
-		error_log(json_decode($this->networksInRange));
+		error_log(json_encode($this->networksInRange));
 
 	}
 
