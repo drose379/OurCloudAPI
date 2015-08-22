@@ -36,7 +36,7 @@ class zoneIdGrabber {
 			$matchingZones[] = $result;
 		}
 
-		if (sizeof($matchingZones > 1)) {
+		if (sizeof($matchingZones) > 1) {
 			error_log("Item found");
 		} else {
 			error_log("Item not found");
