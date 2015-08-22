@@ -1,5 +1,7 @@
 <?php
 
+require_once 'connect.php';
+
 class zoneIdGrabber {
 
 	private $zoneSSID;
@@ -12,12 +14,34 @@ class zoneIdGrabber {
 		$this->zoneSSID = $post[0];
 		$this->networksInRange = json_decode($post[1],true);
 
-		error_log(implode(",",$this->networksInRange));
+		$con = DBConnect::get();
+
+		if ($this->isZoneFound($con)) {
+			//run grabZoneId and echo the result
+		} else {
+			//run createNewZone and echo the result
+		}
 
 	}
 
-	public function isZoneFound() {
+	public function isZoneFound($con) {
 		//make a query for zone that matches criteria, if found, return true, else return false
+		$matchingZones = [];
+
+		$stmt = $con->prepare("SELECT * FROM zones WHERE SSID = :ssid");
+		$stmt->bindParam(':ssid',$this->zoneSSID);
+		$stmt->execute();
+
+		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$matchingZones[] = $result;
+		}
+
+		if (sizeof($matchingZones > 1)) {
+			error_log("Item found");
+		} else {
+			error_log("Item not found");
+		}
+
 	}
 
 	public function createNewZone() {
