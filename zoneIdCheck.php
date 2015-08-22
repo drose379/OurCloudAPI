@@ -39,7 +39,7 @@ class zoneIdGrabber {
 		}
 
 		if (sizeof($matchingZones) > 1) {
-			
+			error_log("Size of matching zones is greater then 1");
 			for($i = 0;$i<sizeOf($matcingZones);$i++) {
 
 				$currentZone = $matchingZones[$i];
