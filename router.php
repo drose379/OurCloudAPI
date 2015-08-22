@@ -22,7 +22,7 @@ class Router {
 			"/userSignin" => [new userSignin,"run"],
 			"/newPost" => [new newPost,"run"],
 			"/newPostWithImage" => [new newPostWithImage,"run"],
-			"/getZoneId" => [new zoneIdCheck,"run"],
+			"/getZoneId" => [new zoneIdGrabber,"run"],
 			"/getZonePosts" => [new getZonePosts,"run"],
 			"/postImageUpload" => [new postImageUpload,"run"]
 		];
