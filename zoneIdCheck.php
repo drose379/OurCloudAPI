@@ -39,17 +39,7 @@ class zoneIdGrabber {
 		}
 
 		if (sizeof($matchingZones) > 0) {
-
-			for($i = 0;$i<sizeOf($matchingZones);$i++) {
-
-				$currentZone = $matchingZones[$i];
-				$inRange = json_decode($currentZone['inRange'],true);
-				foreach($inRange as $network) {
-					//see if network matches, must be at least one match, if no match, unset with unset($matchingZones[$i])
-					error_log($network);
-				}
-			}
-
+			$matchingZoneId = $this->getZoneId($matchingZones);
 		} else {
 			$matchedZoneId = null;
 		}
@@ -66,6 +56,28 @@ class zoneIdGrabber {
 		$stmt->bindParam(':ssid',$this->zoneSSID);
 		$stmt->bindParam(':inRange',json_encode($this->networksInRange));
 		$stmt->execute();
+	}
+
+
+	public function getZoneId($matchingZones) {
+
+		for($i = 0; $i<sizeof($matcingZones);$i++) {
+
+			$matches = 0;
+
+			$currentZone = $matchingZones[$i];
+			$networks = json_decode($currentZone['inRange'],true);
+
+			foreach ($networks as $network) {
+				if (in_array($network, $this->networksInRange)) {
+					$matches++;
+				}
+			}
+
+			error_log($matches);
+
+		}
+
 	}
 
 
