@@ -49,7 +49,7 @@ class zoneIdGrabber {
 
 	public function createNewZone($con) {
 		//creates a new zone record (generate a random 10 digit number as the zoneId, and return the zoneId)
-		$newZoneId = rand(1,10000000000000000000);
+		$newZoneId = rand(1,getrandmax());
 		error_log($newZoneId);
 	}
 
