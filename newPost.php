@@ -11,6 +11,10 @@ class newPost {
 	 * If NO, create a new user record, and return the users new unique id to be saved
 	 */
 
+	// WHEN IN_RANGE ARRAY COMES, NEED TO JSON_DECODE THAT FROM THE JSON_DECODED MASTER ARRAY.
+	//Save array as string to in_range column. keep it in json format.
+	//Look for zone name in the in_range array, remove it from the array
+
 	public function run() {
 		$post = json_decode(file_get_contents("php://input"),true);
 
