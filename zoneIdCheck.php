@@ -16,7 +16,7 @@ class zoneIdGrabber {
 
 		$con = DBConnect::get();
 
-		$zoneId = $this->grabZoneId($con);
+		$zoneId = $this->grabExistingZone($con);
 
 		if($zoneId == null) {
 			$zoneId = $this->createNewZone($con);
@@ -25,7 +25,7 @@ class zoneIdGrabber {
 		echo $zoneId;
 	}
 
-	public function grabZoneId($con) {
+	public function grabExistingZone($con) {
 		//make a query for zone that matches criteria, if found, return true, else return false
 		$matchedZoneId;
 		$matchingZones = [];
@@ -39,7 +39,7 @@ class zoneIdGrabber {
 		}
 
 		if (sizeof($matchingZones) > 0) {
-			$matchingZoneId = $this->getZoneId($matchingZones);
+			$matchingZoneId = $this->validateMatcingSSIDs($matchingZones);
 		} else {
 			$matchedZoneId = null;
 		}
@@ -59,7 +59,9 @@ class zoneIdGrabber {
 	}
 
 
-	public function getZoneId($matchingZones) {
+	public function validateMatcingSSIDs($matchingZones) {
+
+		$finalMatches = null;
 
 		for($i = 0; $i<sizeof($matchingZones);$i++) {
 
@@ -68,15 +70,24 @@ class zoneIdGrabber {
 			$currentZone = $matchingZones[$i];
 			$networks = json_decode($currentZone['inRange'],true);
 
-			foreach ($networks as $network) {
+			foreach($networks as $network) {
 				if (in_array($network, $this->networksInRange)) {
 					$matches++;
 				}
 			}
 
-			error_log($matches);
-
+			if($matches >= 1) {
+				$finalMatches[] = [$matches,$currentZone];
+			}
+			
 		}
+
+		$maxMatches = 0;
+		foreach($finalMatches as $matches => $zoneInfo) {
+			error_log($matches);
+		}
+
+		//grab zone from finalMatches with the highest number of $matches, then grab its zoneId and return it, if nothing in final matches, return null
 
 	}
 
