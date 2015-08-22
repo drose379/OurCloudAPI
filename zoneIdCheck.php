@@ -44,10 +44,7 @@ class zoneIdGrabber {
 
 				$currentZone = $matchingZones[$i];
 				$inRange = json_decode($currentZone[2],true);
-
-				foreach($this->networksInRange as $network) {
-					error_log($network);
-				}
+				error_log($inRange);
 
 			}
 
