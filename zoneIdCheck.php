@@ -58,6 +58,8 @@ class zoneIdGrabber {
 		$stmt->bindParam(':ssid',$this->zoneSSID);
 		$stmt->bindParam(':inRange',json_encode($this->networksInRange));
 		$stmt->execute();
+
+		return $newZoneId;
 	}
 
 
