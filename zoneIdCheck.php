@@ -40,8 +40,12 @@ class zoneIdGrabber {
 
 		if (sizeof($matchingZones) > 1) {
 			
-			foreach($matchingZones as $zone) {
-				error_log(implode(",",$zone));
+			foreach($i = 0;$i<sizeOf($matcingZones);$i++) {
+
+				$currentZone = $matchingZones[$i];
+				$inRange = json_decode($currentZone[2],true);
+				//need to check for inRange items against $this->networksInRange
+					//if items dont match, unset $matchingZones[$i];
 			}
 
 		} else {
