@@ -19,12 +19,10 @@ class zoneIdGrabber {
 		$zoneId = $this->grabZoneId($con);
 
 		if($zoneId == null) {
-			//$zoneId = $this->createNewZone($con);
-			$zoneId = "test";
+			$zoneId = $this->createNewZone($con);
 		}
 
-		error_log($zoneId);
-
+		echo $zoneId;
 	}
 
 	public function grabZoneId($con) {
@@ -51,6 +49,8 @@ class zoneIdGrabber {
 
 	public function createNewZone($con) {
 		//creates a new zone record (generate a random 10 digit number as the zoneId, and return the zoneId)
+		$newZoneId = rand(1,10000000000000000000);
+		error_log($newZoneId);
 	}
 
 
