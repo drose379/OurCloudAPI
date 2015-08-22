@@ -16,7 +16,7 @@ class zoneIdGrabber {
 
 		$con = DBConnect::get();
 
-		$zoneId = $this->isZoneFound();
+		$zoneId = $this->grabZoneId($con);
 
 		if($zoneId == null) {
 			//$zoneId = $this->createNewZone($con);
