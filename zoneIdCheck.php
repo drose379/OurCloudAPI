@@ -46,7 +46,7 @@ class zoneIdGrabber {
 			$matchedZoneId = null;
 		}
 
-		return $zoneFound;
+		return $matchedZoneId;
 	}
 
 	public function createNewZone($con) {
