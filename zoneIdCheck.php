@@ -16,18 +16,20 @@ class zoneIdGrabber {
 
 		$con = DBConnect::get();
 
-		error_log($this->zoneSSID);
+		$zoneId = $this->isZoneFound();
 
-		if ($this->isZoneFound($con)) {
-			//run grabZoneId and echo the result
-		} else {
-			//run createNewZone and echo the result
+		if($zoneId == null) {
+			//$zoneId = $this->createNewZone($con);
+			$zoneId = "test";
 		}
+
+		error_log($zoneId);
 
 	}
 
-	public function isZoneFound($con) {
+	public function grabZoneId($con) {
 		//make a query for zone that matches criteria, if found, return true, else return false
+		$matchedZoneId;
 		$matchingZones = [];
 
 		$stmt = $con->prepare("SELECT * FROM zones WHERE SSID = :ssid");
@@ -39,20 +41,19 @@ class zoneIdGrabber {
 		}
 
 		if (sizeof($matchingZones) > 1) {
-			error_log("Item found");
+			//continue with validation, check to see if current netwroks in range match up with the result
 		} else {
-			error_log("Item not found");
+			$matchedZoneId = null;
 		}
 
+		return $zoneFound;
 	}
 
-	public function createNewZone() {
-		//creates a new zone record AND returns the new zoneId
+	public function createNewZone($con) {
+		//creates a new zone record (generate a random 10 digit number as the zoneId, and return the zoneId)
 	}
 
-	public function grabZoneId() {
-		//called if zone record already exists, returns the zoneId of matching criteria
-	}
+
 
 }
  
