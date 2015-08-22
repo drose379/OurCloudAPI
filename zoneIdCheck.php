@@ -39,7 +39,11 @@ class zoneIdGrabber {
 		}
 
 		if (sizeof($matchingZones) > 1) {
-			//continue with validation, check to see if current netwroks in range match up with the result
+			
+			foreach($matchingZones as $zone) {
+				error_log(implode(",",$zone));
+			}
+
 		} else {
 			$matchedZoneId = null;
 		}
