@@ -13,7 +13,7 @@ class zoneIdGrabber {
 		$this->networksInRange = json_encode($post[1]);
 
 		$test = json_decode($this->networksInRange,true);
-		error_log(sizeof($test));
+		error_log(implode(",",$test));
 
 	}
 
