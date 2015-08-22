@@ -39,7 +39,8 @@ class zoneIdGrabber {
 		}
 
 		if (sizeof($matchingZones) > 0) {
-			$matchingZoneId = $this->validateMatcingSSIDs($matchingZones);
+			$matchedZoneId = $this->validateMatcingSSIDs($matchingZones);
+			error_log("matching zone found");
 		} else {
 			$matchedZoneId = null;
 		}
