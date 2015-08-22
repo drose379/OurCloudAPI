@@ -61,7 +61,7 @@ class zoneIdGrabber {
 
 	public function getZoneId($matchingZones) {
 
-		for($i = 0; $i<sizeof($matcingZones);$i++) {
+		for($i = 0; $i<sizeof($matchingZones);$i++) {
 
 			$matches = 0;
 
