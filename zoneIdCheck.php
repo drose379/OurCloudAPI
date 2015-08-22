@@ -43,7 +43,7 @@ class zoneIdGrabber {
 			for($i = 0;$i<sizeOf($matchingZones);$i++) {
 
 				$currentZone = $matchingZones[$i];
-				error_log($currentZone[0]);
+				error_log($currentZone['SSID']); //not by numbers but by col names, need to commit and pull
 
 			}
 
