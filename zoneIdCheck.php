@@ -39,8 +39,8 @@ class zoneIdGrabber {
 		}
 
 		if (sizeof($matchingZones) > 1) {
-			error_log("Size of matching zones is greater then 1");
-			for($i = 0;$i<sizeOf($matcingZones);$i++) {
+
+			for($i = 0;$i<sizeOf($matchingZones);$i++) {
 
 				$currentZone = $matchingZones[$i];
 				$inRange = json_decode($currentZone[2],true);
