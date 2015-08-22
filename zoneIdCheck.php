@@ -54,7 +54,7 @@ class zoneIdGrabber {
 		$stmt = $con->prepare("INSERT INTO zones (ID,SSID,inRange) VALUES (:id,:ssid,:inRange)");
 		$stmt->bindParam(':id',$newZoneId);
 		$stmt->bindParam(':ssid',$this->zoneSSID);
-		$stmt->bindParam(':inRange',$this->networksInRange);
+		$stmt->bindParam(':inRange',json_encode($this->networksInRange));
 		$stmt->execute();
 	}
 
