@@ -22,6 +22,7 @@ class zoneIdGrabber {
 			$zoneId = $this->createNewZone($con);
 		}
 
+		error_log($zoneId);
 		echo $zoneId;
 	}
 
@@ -40,7 +41,6 @@ class zoneIdGrabber {
 
 		if (sizeof($matchingZones) > 0) {
 			$matchedZoneId = $this->validateMatcingSSIDs($matchingZones);
-			error_log("matching zone found");
 		} else {
 			$matchedZoneId = null;
 		}
