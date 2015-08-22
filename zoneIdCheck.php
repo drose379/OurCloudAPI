@@ -83,8 +83,8 @@ class zoneIdGrabber {
 		}
 
 		$maxMatches = 0;
-		foreach($finalMatches as $matches => $zoneInfo) {
-			error_log($matches);
+		foreach($finalMatches as $info) {
+			error_log($info[0]);
 		}
 
 		//grab zone from finalMatches with the highest number of $matches, then grab its zoneId and return it, if nothing in final matches, return null
