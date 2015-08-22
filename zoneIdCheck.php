@@ -43,8 +43,11 @@ class zoneIdGrabber {
 			for($i = 0;$i<sizeOf($matchingZones);$i++) {
 
 				$currentZone = $matchingZones[$i];
-				error_log($currentZone['SSID']); //not by numbers but by col names, need to commit and pull
-
+				$inRange = json_decode($currentZone['inRange'],true);
+				foreach($inRange as $network) {
+					//see if network matches, must be at least one match, if no match, unset with unset($matchingZones[$i])
+					error_log($network);
+				}
 			}
 
 		} else {
