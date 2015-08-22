@@ -10,10 +10,9 @@ class zoneIdGrabber {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$this->zoneSSID = $post[0];
-		$this->networksInRange = json_encode($post[1]);
+		$this->networksInRange = json_decode($post[1],true);
 
-		$test = json_decode($this->networksInRange,true);
-		error_log(implode(",",$test));
+		error_log(implode(",",$this->networksInRange));
 
 	}
 
