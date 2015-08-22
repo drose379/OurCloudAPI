@@ -38,7 +38,7 @@ class zoneIdGrabber {
 			$matchingZones[] = $result;
 		}
 
-		if (sizeof($matchingZones) > 1) {
+		if (sizeof($matchingZones) > 0) {
 
 			for($i = 0;$i<sizeOf($matchingZones);$i++) {
 
