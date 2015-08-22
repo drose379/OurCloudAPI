@@ -16,6 +16,8 @@ class zoneIdGrabber {
 
 		$con = DBConnect::get();
 
+		error_log($this->zoneSSID);
+
 		if ($this->isZoneFound($con)) {
 			//run grabZoneId and echo the result
 		} else {
