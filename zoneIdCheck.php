@@ -43,7 +43,7 @@ class zoneIdGrabber {
 			for($i = 0;$i<sizeOf($matchingZones);$i++) {
 
 				$currentZone = $matchingZones[$i];
-				error_log($currentZone);
+				error_log(implode(",",$currentZone));
 
 			}
 
