@@ -26,13 +26,6 @@ class newPost {
 		$this->insert($userId,$zone,$postText,$timeMillis);
 	}
 
-	/**
-	 * Used to format url to change photo size to 65 instead of 50
-	 * Google API returns a url of photo and sz=X at the end of URL for image size
-	 * Grab everything after = and change it to correct size
-	 */
-
-
 	public function insert($userId,$zone,$post,$postTime) {
 		$con  = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postTime) VALUES (:user_id,:zone,:postText,:time)");

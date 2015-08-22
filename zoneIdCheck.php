@@ -4,6 +4,8 @@ require_once 'connect.php';
 
 class zoneIdGrabber {
 
+	//clean up!
+
 	private $zoneSSID;
 	private $networksInRange;
 	
@@ -22,8 +24,7 @@ class zoneIdGrabber {
 			$zoneId = $this->createNewZone($con);
 		}
 
-		error_log($zoneId);
-		echo $zoneId;
+		echo trim($zoneId);
 	}
 
 	public function grabExistingZone($con) {
