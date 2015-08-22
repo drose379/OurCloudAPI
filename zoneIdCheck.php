@@ -24,7 +24,7 @@ class zoneIdGrabber {
 			$zoneId = $this->createNewZone($con);
 		}
 
-		echo trim($zoneId);
+		echo $zoneId;
 	}
 
 	public function grabExistingZone($con) {
