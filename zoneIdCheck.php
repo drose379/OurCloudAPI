@@ -16,6 +16,7 @@ class zoneIdGrabber {
 		foreach($test as $network) {
 			error_log($network);
 		}
+		
 	}
 
 	public function isZoneFound() {
