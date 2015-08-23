@@ -11,23 +11,35 @@ class newPostWithImage {
 		$postImageUrl = $post[3];
 		$postTimeMillis = $post[4];
 
-		$this->insert($userId,$zone,$postText,$postImageUrl,$postTimeMillis);
+		if($postText == null) {
+			$this->insertTextWithPhoto($userId,$zone,$postText,$postImageUrl,$postTimeMillis);
+		} else {
+			$this->insertPhoto($userId,$zone,$postImageurl,$postTimeMillis);
+		}
+		
 
 
 	}
 
-	public function insert($userId,$zone,$post,$postImageUrl,$postTimeMillis) {
+	public function insertTextWithPhoto($userId,$zone,$post,$postImageUrl,$postTimeMillis) {
 
 		$con  = DBConnect::get();
-		//$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postImage,postTime) VALUES (:id,:zone,:postText,:postImage,:postTime)");
-		$stmt = $post != null ? $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postImage,postTime) VALUES (:id,:zone,:postText,:postImage,:postTime)")
-		: $con->prepare("INSERT INTO zone_posts (user_id,zone,postImage,postTime) VALUES (:id,:zone,:postImage,:postTime)"); ;
+		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postImage,postTime) VALUES (:id,:zone,:postText,:postImage,:postTime)");
 		$stmt->bindParam(':id',$userId);
 		$stmt->bindParam(':zone',$zone);
 		$stmt->bindParam(':postText',$post);
 		$stmt->bindParam(':postImage',$postImageUrl);
 		$stmt->bindParam(':postTime',$postTimeMillis);
 		$stmt->execute();
+	}
+
+	public function insertPhoto($userId,$zone,$postImageUrl,$postTimeMillis) {
+		$con = DBConnect::get();
+		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postImage,postTime) VALUES (:id,:zone,:postImage,:postTime)");
+		$stmt->bindParam(':id',$userId);
+		$stmt->bindParam(':zone',$zone);
+		$stmt->bindParam(':postImage',$postImageUrl);
+		$stmt->bindParam(':postTime',$postTimeMillis);
 	}
 
 }
