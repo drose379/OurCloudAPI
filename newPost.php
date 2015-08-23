@@ -22,7 +22,7 @@ class newPost {
 		$zone = $post[1];
 		$postText = $post[2];
 		$timeMillis = $post[3];
-		$expTimeMillis = $post[4];
+		$expDateMillis = $post[4];
 
 		if($expTimeMillis > 0) {
 			$this->insertWithExp($userId,$zone,$postText,$timeMillis,$expDateMillis);
@@ -40,7 +40,7 @@ class newPost {
 		$stmt->bindParam(':zone',$zone);
 		$stmt->bindParam(':postText',$post);
 		$stmt->bindParam(':time',$postTime);
-		$stmt->bindParam(':expDate',$expDate)
+		$stmt->bindParam(':expDate',$expDate);
 		$stmt->execute();
 	}
 
