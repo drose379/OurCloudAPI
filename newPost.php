@@ -22,11 +22,29 @@ class newPost {
 		$zone = $post[1];
 		$postText = $post[2];
 		$timeMillis = $post[3];
+		$expTimeMillis = $post[4];
 
-		$this->insert($userId,$zone,$postText,$timeMillis);
+		if($expTimeMillis > 0) {
+			$this->insertWithExp($userId,$zone,$postText,$timeMillis,$expDateMillis);
+		} else {
+			$this->insertWithoutExp($userId,$zone,$postText,$timeMillis);
+		}
+
+		
 	}
 
-	public function insert($userId,$zone,$post,$postTime) {
+	public function insertWithExp($userId,$zone,$post,$postTime,$expDate) {
+		$con  = DBConnect::get();
+		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postTime,expDate) VALUES (:user_id,:zone,:postText,:time,:expDate)");
+		$stmt->bindParam(':user_id',$userId);
+		$stmt->bindParam(':zone',$zone);
+		$stmt->bindParam(':postText',$post);
+		$stmt->bindParam(':time',$postTime);
+		$stmt->bindParam(':expDate',$expDate)
+		$stmt->execute();
+	}
+
+	public function insertWithoutExp($userId,$zone,$post,$postTime) {
 		$con  = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postTime) VALUES (:user_id,:zone,:postText,:time)");
 		$stmt->bindParam(':user_id',$userId);
