@@ -11,10 +11,9 @@ class newPostWithImage {
 		$postImageUrl = $post[3];
 		$postTimeMillis = $post[4];
 
-		if($postText == null) {
+		if(empty($postText)) {
 			$this->insertTextWithPhoto($userId,$zone,$postText,$postImageUrl,$postTimeMillis);
 		} else {
-			error_log(implode(",",$post));
 			$this->insertPhoto($userId,$zone,$postImageurl,$postTimeMillis);
 		}
 		
