@@ -33,7 +33,7 @@ class getZonePosts {
 
 		//need to skip this if expiration for post is 0, a post with 0 exp time will last forever
 		foreach ($posts as $post) {
-			error_log($post["expDate"]);
+			error_log($post["zone"]);
 		}
 
 		echo json_encode($posts);
