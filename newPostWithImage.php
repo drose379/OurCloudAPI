@@ -10,8 +10,14 @@ class newPostWithImage {
 		$postText = $post[2];
 		$postImageUrl = $post[3];
 		$postTimeMillis = $post[4];
+		$expDate = $post[5];
 
-		$this->insertTextWithPhoto($userId,$zone,$postText,$postImageUrl,$postTimeMillis);
+		if($expDate > 0) {
+			$this->insertTextWithPhotoExp($userId,$zone,$postText,$postImageUrl,$postTimeMillis,$expDate);
+		} else {
+			$this->insertTextWithPhoto($userId,$zone,$postText,$postImageUrl,$postTimeMillis);
+		}
+		
 
 		
 
@@ -19,7 +25,6 @@ class newPostWithImage {
 	}
 
 	public function insertTextWithPhoto($userId,$zone,$post,$postImageUrl,$postTimeMillis) {
-
 		$con  = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postImage,postTime) VALUES (:id,:zone,:postText,:postImage,:postTime)");
 		$stmt->bindParam(':id',$userId);
@@ -30,6 +35,20 @@ class newPostWithImage {
 		$stmt->execute();
 	}
 
+
+	public function insertTextWithPhotoExp($userId,$zone,$post,$postImageUrl,$postTimeMillis,$expDate) {
+		$con  = DBConnect::get();
+		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postText,postImage,postTime,expDate) VALUES (:id,:zone,:postText,:postImage,:postTime,:expDate)");
+		$stmt->bindParam(':id',$userId);
+		$stmt->bindParam(':zone',$zone);
+		$stmt->bindParam(':postText',$post);
+		$stmt->bindParam(':postImage',$postImageUrl);
+		$stmt->bindParam(':postTime',$postTimeMillis);
+		$stmt->bindParam(':expDate',$expDate);
+		$stmt->execute();
+	}
+
+
 	public function insertPhoto($userId,$zone,$postImageUrl,$postTimeMillis) {
 		$con = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO zone_posts (user_id,zone,postImage,postTime) VALUES (:id,:zone,:postImage,:postTime)");
@@ -38,5 +57,7 @@ class newPostWithImage {
 		$stmt->bindParam(':postImage',$postImageUrl);
 		$stmt->bindParam(':postTime',$postTimeMillis);
 	}
+
+
 
 }
