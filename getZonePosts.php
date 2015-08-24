@@ -29,7 +29,7 @@ class getZonePosts {
 			$posts[] = $result;
 		}
 
-		error_log(microtime(true));
+		error_log(round(microtime(true)));
 		echo json_encode($posts);
 	}
 
