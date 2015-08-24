@@ -37,17 +37,56 @@ class zoneIdGrabber {
 		$stmt->execute();
 
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$matchingZones[] = $result;
+			$matchingSSIDZones[] = $result;
 		}
 
-		if (sizeof($matchingZones) > 0) {
-			$matchedZoneId = $this->validateMatcingSSIDs($matchingZones);
+		if (sizeof($matchingSSIDZones) > 0) {
+			$matchedZoneId = $this->validateMatcingSSIDs($matchingSSIDZones);
 		} else {
 			$matchedZoneId = null;
 		}
 
 		return $matchedZoneId;
 	}
+
+	public function validateMatcingSSIDs($matchingZones) {
+
+		$finalMatches = null;
+
+		for($i = 0; $i<sizeof($matchingZones);$i++) { //foreach zone with a matching SSID
+
+			$matches = 0;
+			$currentZone = $matchingZones[$i];
+			$zoneNetworks = json_decode($currentZone['inRange'],true);
+
+			foreach($zoneNetworks as $network) { // for each network in the inRange array for a matching zone
+				if (in_array($network, $this->networksInRange)) { //if the network matches one in the current range, add a match point
+					$matches++;
+				}
+			}
+
+			if($matches >= 1) { // if the zone has one or more matches, add it to the final array
+				$finalMatches[] = [$matches,$currentZone];
+			}
+			
+		}
+
+		$maxMatches = 0;
+		$validZone = null;
+
+		foreach($finalMatches as $info) { // for each zone, assign the one with the highest matches count to the current zone, and grab the ID
+			if($info[0] > $maxMatches) {
+				$maxMatches = $info[0];
+				$validZone = $info[1];
+			}
+		}
+
+		return $validZone["ID"];
+
+		//grab zone from finalMatches with the highest number of $matches, then grab its zoneId and return it, if nothing in final matches, return null
+
+	}
+
 
 	public function createNewZone($con) {
 		//creates a new zone record (generate a random 10 digit number as the zoneId, and return the zoneId)
@@ -63,43 +102,6 @@ class zoneIdGrabber {
 	}
 
 
-	public function validateMatcingSSIDs($matchingZones) {
-
-		$finalMatches = null;
-
-		for($i = 0; $i<sizeof($matchingZones);$i++) {
-
-			$matches = 0;
-
-			$currentZone = $matchingZones[$i];
-			$networks = json_decode($currentZone['inRange'],true);
-
-			foreach($networks as $network) {
-				if (in_array($network, $this->networksInRange)) {
-					$matches++;
-				}
-			}
-
-			if($matches >= 1) {
-				$finalMatches[] = [$matches,$currentZone];
-			}
-			
-		}
-
-		$maxMatches = 0;
-		$validZone = null;
-		foreach($finalMatches as $info) {
-			if($info[0] > $maxMatches) {
-				$maxMatches = $info[0];
-				$validZone = $info[1];
-			}
-		}
-
-		return $validZone["ID"];
-
-		//grab zone from finalMatches with the highest number of $matches, then grab its zoneId and return it, if nothing in final matches, return null
-
-	}
 
 
 
