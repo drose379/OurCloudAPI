@@ -20,7 +20,7 @@ class getZonePosts {
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT
 			users.user_name,users.user_image,
-			zone_posts.postText,zone_posts.postImage,zone_posts.postTime
+			zone_posts.postText,zone_posts.postImage,zone_posts.postTime,zone_posts.expDate
 			FROM zone_posts
 			JOIN users ON users.user_id = zone_posts.user_id
 			WHERE zone = :zoneId");
@@ -33,7 +33,7 @@ class getZonePosts {
 
 		//need to skip this if expiration for post is 0, a post with 0 exp time will last forever
 		foreach ($posts as $post) {
-			error_log(implode(",",array_keys($post)));
+			error_log($post["expDate"]);
 		}
 
 		echo json_encode($posts);
