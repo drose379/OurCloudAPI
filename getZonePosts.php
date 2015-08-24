@@ -13,6 +13,8 @@ class getZonePosts {
 	}
 
 	public function grabPosts($zoneId) {
+		$currentMillis = (date("U") * 1000);
+
 		$posts = array();
 
 		$con = DBConnect::get();
@@ -29,7 +31,11 @@ class getZonePosts {
 			$posts[] = $result;
 		}
 
-		error_log(date("U") * 1000);
+		//need to skip this if expiration for post is 0, a post with 0 exp time will last forever
+		foreach ($posts as $post) {
+			error_log($post["postTime"]);
+		}
+
 		echo json_encode($posts);
 	}
 
