@@ -32,9 +32,10 @@ class getZonePosts {
 		}
 
 		//need to skip this if expiration for post is 0, a post with 0 exp time will last forever
-		foreach ($posts as $post) {
-			if ($post["expDate"] != null && $currentMillis > $post["expDate"]) {
-				unset($posts[$post]);
+		for($i = 0;i<size($posts);i++) {
+			$currentPost = $posts[$i];
+			if ($currentPost["expDate"] != null && $currentMillis > $currentPost["expDate"]) {
+				unset($posts[$i]);
 			}
 		}
 
