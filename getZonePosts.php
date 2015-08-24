@@ -35,7 +35,7 @@ class getZonePosts {
 		for($i = 0;$i<sizeof($posts);$i++) {
 			$currentPost = $posts[$i];
 			if ($currentPost["expDate"] != null && $currentMillis > $currentPost["expDate"]) {
-				//unset($posts[$i]);
+				unset($posts[$i]);
 			}
 		}
 
