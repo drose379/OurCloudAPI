@@ -24,7 +24,7 @@ class newPost {
 		$timeMillis = $post[3];
 		$expDateMillis = $post[4];
 
-		if($expTimeMillis > 0) {
+		if($expDateMillis > 0) {
 			$this->insertWithExp($userId,$zone,$postText,$timeMillis,$expDateMillis);
 		} else {
 			$this->insertWithoutExp($userId,$zone,$postText,$timeMillis);
