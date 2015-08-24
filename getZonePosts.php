@@ -37,6 +37,7 @@ class getZonePosts {
 			if ($currentPost["expDate"] != null && $currentMillis > $currentPost["expDate"]) {
 				unset($posts[$i]);
 			}
+			unset($post["expDate"]);
 		}
 
 		echo json_encode($posts);
