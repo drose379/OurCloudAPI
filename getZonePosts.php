@@ -40,7 +40,11 @@ class getZonePosts {
 			}
 		}
 
+		//testing 
+		$this->addPostType($finalPosts);
+
 		echo json_encode($finalPosts);
+
 	}
 
 	public function addPostType($grabbedPosts) {
