@@ -59,7 +59,6 @@ class getZonePosts {
 			* To test, error log the json_encoded array
 			*/
 
-/*
 			if ($post["postText"] != null && $post["postImage"] != null) {
 				//type 2
 				$type = "2";
@@ -70,13 +69,10 @@ class getZonePosts {
 				//should be just image
 				$type = "3";
 			}
-*/
-
-			if ($post["postText"] == null) {
-				error_log("post text is null");
-			}
-
+			//add to post["type"] = $type
+			error_log($type);
 		}
+
 	}
 
 
