@@ -43,6 +43,38 @@ class getZonePosts {
 		echo json_encode($finalPosts);
 	}
 
+	public function addPostType($grabbedPosts) {
+		foreach($grabbedPosts as $post) {
+			/**
+			* loop over each post, check what items are null (if any)
+			* type 1 = just text
+			* type 2 = text and photo
+			* type 3 = just photo
+
+			* Add the type to the $post and echo out the json encoded $grabbedPosts array
+			* To test, error log the json_encoded array
+			*/
+
+/*
+			if ($post["postText"] != null && $post["postImage"] != null) {
+				//type 2
+				$type = "2";
+			} else if ($post["postText"] != null && $post["postImage"] == null) {
+				//type 1
+				$type = "1";
+			} else {
+				//should be just image
+				$type = "3";
+			}
+*/
+
+			if ($post["postText"] == null) {
+				erorr_log("post text is null");
+			}
+
+		}
+	}
+
 
 
 
