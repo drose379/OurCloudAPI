@@ -73,7 +73,7 @@ class getZonePosts {
 */
 
 			if ($post["postText"] == "") {
-				erorr_log("post text is null");
+				error_log("post text is null");
 			}
 
 		}
