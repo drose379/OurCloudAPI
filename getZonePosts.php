@@ -43,7 +43,7 @@ class getZonePosts {
 		//testing 
 		$this->addPostType($finalPosts);
 
-		//echo json_encode($finalPosts);
+		echo json_encode($finalPosts);
 
 	}
 
@@ -73,7 +73,7 @@ class getZonePosts {
 			$post["postType"] = $type;
 		}
 
-		echo json_encode($grabbedPosts);
+		error_log(json_encode($grabbedPosts));
 
 	}
 
