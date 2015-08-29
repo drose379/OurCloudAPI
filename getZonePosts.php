@@ -70,7 +70,7 @@ class getZonePosts {
 				$type = "3";
 			}
 
-			$post["postType"] = $type;
+			&$post["postType"] = $type; // need to use the & sign that uses a reference to the origional array (& references orig array)
 		}
 
 		error_log(json_encode($grabbedPosts));
