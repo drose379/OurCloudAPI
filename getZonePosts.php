@@ -43,7 +43,7 @@ class getZonePosts {
 		//testing 
 		$this->addPostType($finalPosts);
 
-		echo json_encode($finalPosts);
+		//echo json_encode($finalPosts);
 
 	}
 
@@ -69,9 +69,11 @@ class getZonePosts {
 				//should be just image
 				$type = "3";
 			}
-			//add to post["type"] = $type
-			error_log($type);
+
+			$post["postType"] = $type;
 		}
+
+		echo json_encode($grabbedPosts);
 
 	}
 
