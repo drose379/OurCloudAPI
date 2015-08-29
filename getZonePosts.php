@@ -48,7 +48,7 @@ class getZonePosts {
 	}
 
 	public function addPostType($grabbedPosts) {
-		foreach($grabbedPosts as $post) {
+		foreach($grabbedPosts as &$post) {
 			/**
 			* loop over each post, check what items are null (if any)
 			* type 1 = just text
@@ -70,7 +70,7 @@ class getZonePosts {
 				$type = "3";
 			}
 
-			&$post["postType"] = $type; // need to use the & sign that uses a reference to the origional array (& references orig array)
+			$post["postType"] = $type; // need to use the & sign that uses a reference to the origional array (& references orig array)
 		}
 
 		error_log(json_encode($grabbedPosts));
