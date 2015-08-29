@@ -42,9 +42,6 @@ class getZonePosts {
 
 		//testing 
 		$this->addPostType($finalPosts);
-
-		echo json_encode($finalPosts);
-
 	}
 
 	public function addPostType($grabbedPosts) {
@@ -73,7 +70,7 @@ class getZonePosts {
 			$post["postType"] = $type; // need to use the & sign that uses a reference to the origional array (& references orig array)
 		}
 
-		error_log(json_encode($grabbedPosts));
+		echo json_encode($grabbedPosts);
 
 	}
 
