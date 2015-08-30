@@ -14,7 +14,7 @@ class zoneIdGrabber {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$this->zoneSSID = $post[0];
-		$this->networksInRange = array_unique(json_decode($post[1],true));
+		$this->networksInRange = array_unique(json_decode($this->removeBlankItems($post[1],true)));
 
 		$con = DBConnect::get();
 
@@ -26,6 +26,14 @@ class zoneIdGrabber {
 
 		echo $zoneId;
 	}
+
+	public function removeBlankItems($array) {
+		foreach ($array as $key => $item) {
+			if ($item == null) {
+				unset($array[$key]);
+			}
+		}
+	} 
 
 	public function grabExistingZone($con) {
 		//make a query for zone that matches criteria, if found, return true, else return false
