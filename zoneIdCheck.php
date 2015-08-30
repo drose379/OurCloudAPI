@@ -91,7 +91,7 @@ class zoneIdGrabber {
 		}
 
 		//just return the $validZone array (it will include the name)
-		return json_encode(["name" => $validZone["name"] , "ID" => $validZone["ID"] ]]);
+		return json_encode(["name" => $validZone["name"] , "ID" => $validZone["ID"] ]);
 
 		//grab zone from finalMatches with the highest number of $matches, then grab its zoneId and return it, if nothing in final matches, return null
 
