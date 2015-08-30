@@ -14,7 +14,7 @@ class zoneIdGrabber {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$this->zoneSSID = $post[0];
-		$this->networksInRange = json_decode($post[1],true);
+		$this->networksInRange = array_unique(json_decode($post[1],true));
 
 		$con = DBConnect::get();
 
