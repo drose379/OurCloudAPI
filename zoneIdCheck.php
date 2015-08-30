@@ -99,9 +99,7 @@ class zoneIdGrabber {
 		$stmt->bindParam(':inRange',json_encode($this->networksInRange));
 		$stmt->execute();
 
-		error_log(json_encode(["ID" => $newZoneId , "name" => "" ])); //return this
-
-		return $newZoneId; //need to trim this, for some reason space before the zone id in the Db
+		return json_encode(["ID"] => $newZoneId, "name" => ""); //need to trim this, for some reason space before the zone id in the Db
 	}
 
 
