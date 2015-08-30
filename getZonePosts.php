@@ -40,7 +40,6 @@ class getZonePosts {
 			}
 		}
 
-		//testing 
 		$this->addPostType($finalPosts);
 	}
 
@@ -57,13 +56,13 @@ class getZonePosts {
 			*/
 
 			if ($post["postText"] != null && $post["postImage"] != null) {
-				//type 2
+				//both post text and image
 				$type = "2";
 			} else if ($post["postText"] != null && $post["postImage"] == null) {
-				//type 1
+				//just post text
 				$type = "1";
 			} else {
-				//should be just image
+				//just image
 				$type = "3";
 			}
 

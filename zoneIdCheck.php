@@ -81,6 +81,7 @@ class zoneIdGrabber {
 			}
 		}
 
+		//just return the $validZone array (it will include the name)
 		return $validZone["ID"];
 
 		//grab zone from finalMatches with the highest number of $matches, then grab its zoneId and return it, if nothing in final matches, return null
@@ -97,6 +98,8 @@ class zoneIdGrabber {
 		$stmt->bindParam(':ssid',$this->zoneSSID);
 		$stmt->bindParam(':inRange',json_encode($this->networksInRange));
 		$stmt->execute();
+
+		error_log(json_encode(["id" => $newZoneId , "name" => "" ]));
 
 		return $newZoneId; //need to trim this, for some reason space before the zone id in the Db
 	}
