@@ -33,6 +33,7 @@ class zoneIdGrabber {
 				unset($array[$key]);
 			}
 		}
+		return $array;
 	} 
 
 	public function grabExistingZone($con) {
