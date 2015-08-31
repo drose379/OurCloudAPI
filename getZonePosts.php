@@ -21,7 +21,7 @@ class getZonePosts {
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT
 			users.user_name,users.user_image,
-			zone_posts.postText,zone_posts.postImage,zone_posts.postTime,zone_posts.expDate
+			zone_posts.ID,zone_posts.postText,zone_posts.postImage,zone_posts.postTime,zone_posts.expDate
 			FROM zone_posts
 			JOIN users ON users.user_id = zone_posts.user_id
 			WHERE zone = :zoneId");
