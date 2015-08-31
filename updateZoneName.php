@@ -23,7 +23,7 @@ class zoneNameUpdate {
 		$con = DBConnect::get();
 		$stmt = $con->prepare("UPDATE zones SET name = :name WHERE ID = :id");
 		$stmt->bindParam(':name',$name);
-		$stmt->bindParam(':id',$zoneId);
+		$stmt->bindParam(':id',$id);
 		$stmt->execute();
 	}
 
