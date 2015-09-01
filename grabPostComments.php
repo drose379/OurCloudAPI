@@ -31,7 +31,7 @@ class grabPostComments {
 		$stmt->execute();
 
 		while ($comment = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$comments[] = $result;
+			$comments[] = $comment;
 		}
 
 		error_log(json_encode($comments));
