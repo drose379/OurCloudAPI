@@ -3,6 +3,7 @@
 require 'userSignin.php';
 require 'newPost.php';
 require 'newPostWithImage.php';
+require 'newComment.php';
 require 'updateZoneName.php';
 
 require 'zoneIdCheck.php';
@@ -23,6 +24,7 @@ class Router {
 			"/userSignin" => [new userSignin,"run"],
 			"/newPost" => [new newPost,"run"],
 			"/newPostWithImage" => [new newPostWithImage,"run"],
+			"/newComment" => [new newComment,"run"],
 			"/getZoneId" => [new zoneIdGrabber,"run"],
 			"/updateZoneName" => [new zoneNameUpdate,"run"],
 			"/getZonePosts" => [new getZonePosts,"run"],
