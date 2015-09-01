@@ -32,9 +32,8 @@ class grabPostComments {
 			$comments[] = $comment;
 		}
 
-		error_log(json_encode($comments));
+		echo json_encode($comments);
 
-			//need to be tested with error_logging
 	}
 
 }
