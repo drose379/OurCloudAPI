@@ -10,6 +10,8 @@ class grabPostComments {
 
 		$postId = $post[0];
 
+		$this->grabComments($postId);
+
 	}
 
 	public function grabComments($postId) {
