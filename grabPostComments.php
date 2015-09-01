@@ -10,8 +10,6 @@ class grabPostComments {
 
 		$postId = $post[0];
 
-		error_log($postId);
-
 		$this->grabComments($postId);
 
 	}
