@@ -5,6 +5,7 @@ require 'newPost.php';
 require 'newPostWithImage.php';
 require 'newComment.php';
 require 'updateZoneName.php';
+require 'grabPostComments.php';
 
 require 'zoneIdCheck.php';
 require 'getZonePosts.php';
@@ -28,6 +29,7 @@ class Router {
 			"/getZoneId" => [new zoneIdGrabber,"run"],
 			"/updateZoneName" => [new zoneNameUpdate,"run"],
 			"/getZonePosts" => [new getZonePosts,"run"],
+			"/getPostComments" => [new grabPostComments,"run"],
 			"/postImageUpload" => [new postImageUpload,"run"]
 		];
 	}
