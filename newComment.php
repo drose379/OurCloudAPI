@@ -11,6 +11,8 @@ class newComment {
 		$postId = $post[1];
 		$commentTimeMillis = $post[2];
 		$comment = $post[3];
+
+		$this->addComment($userId,$postId,$commentTimeMillis,$comment);
 	}
 
 	public function addComment($userId,$postId,$commentTimeMillis,$comment) {
