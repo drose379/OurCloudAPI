@@ -13,6 +13,8 @@ class grabPostComments {
 	}
 
 	public function grabComments($postId) {
+		$comments = [];
+
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT 
 			users.user_name,users.user_image,
@@ -21,9 +23,16 @@ class grabPostComments {
 			JOIN users ON users.user_id = post_comments.user_id 
 			WHERE post_id = :postId");
 
+		$stmt->bindParam(':postId',$postId);
+		$stmt->execute();
 
-		//does WHERE get called before JOIN? 
-		//If not, how does it JOIN
+		while ($comment = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$comments[] = $result;
+		}
+
+		error_log(json_encode($comments));
+
+			//need to be tested with error_logging
 	}
 
 }
