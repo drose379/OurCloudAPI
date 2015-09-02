@@ -24,7 +24,7 @@ class getZonePosts {
 			zone_posts.ID,zone_posts.postText,zone_posts.postImage,zone_posts.postTime,zone_posts.expDate
 			FROM zone_posts
 			JOIN users ON users.user_id = zone_posts.user_id
-			WHERE zone = :zoneId");
+			WHERE zone = :zoneId ORDER BY postTime DESC");
 
 		$stmt->bindParam(':zoneId',$zoneId);
 		$stmt->execute();
