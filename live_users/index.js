@@ -4,7 +4,13 @@ var io = require('socket.io');
 var server = http.createServer()
 
 server.on('connection',function(socket) {
-	console.log("Connection Made!");
+
+	console.log("Connected!");
+	
+	socket.on('disconnect',function() {
+		console.log("Connection disconnected");
+	});
+
 });
 
 
