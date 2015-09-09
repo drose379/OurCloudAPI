@@ -1,9 +1,9 @@
 var http = require('http');
-var io = require('socket.io');
+var io = require('socket.io')(http);
 
 var server = http.createServer()
 
-server.on('connection',function(socket) {
+io.on('connection',function(socket) {
 
 	console.log("Connected!");
 	
