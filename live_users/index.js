@@ -30,7 +30,7 @@ io.sockets.on('connection',function(socket) {
 			rooms[socketZone] = {};
 		}
 		
-		rooms[socketZone]["socketUserName"] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
+		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 		
 		console.log(rooms[socketZone]);
 
