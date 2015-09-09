@@ -1,4 +1,4 @@
-var http = require('http');
+
 var io = require('socket.io').listen(3000);
 
 var rooms = {}
@@ -35,6 +35,7 @@ io.sockets.on('connection',function(socket) {
 		console.log(rooms[socketZone]);
 
 		//emit updateActiveUsers event with the array of users in the same room as the socket
+		io.sockets.in(socketZone).emit('updateUsers',rooms[socketZone]);
 
 	});
 
