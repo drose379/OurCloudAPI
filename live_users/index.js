@@ -25,10 +25,10 @@ io.sockets.on('connection',function(socket) {
 			//add the room to the rooms object, then add user to their respective room
 			rooms[socketZone] = {};
 		}
-
-		console.log(Object.keys(rooms[socketZone]));
 		
 		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
+
+		console.log(Object.keys(rooms[socketZone]));
 		
 		//emit updateActiveUsers event with the array of users in the same room as the socket
 		io.sockets.in(socketZone).emit('updateUsers',rooms[socketZone]);
@@ -36,10 +36,11 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('disconnect',function() {
-		console.log(Object.keys(room));
 		//remove userId from their room, emit updateUsers event
 		var room = rooms[socketZone];
 		delete room[socketUserId];
+
+		console.log(Object.keys(room));
 
 
 
