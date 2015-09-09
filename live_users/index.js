@@ -11,6 +11,10 @@ server.on('connection',function(socket) {
 		console.log("Connection disconnected");
 	});
 
+	socket.on('testEvent',function(data) {
+		console.log(data);
+	});
+
 });
 
 
