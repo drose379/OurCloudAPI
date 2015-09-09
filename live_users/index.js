@@ -44,7 +44,7 @@ io.sockets.on('connection',function(socket) {
 
 
 
-		//io.sockets.in(socketZone).emit('updateUsers',room[socketZone]);
+		io.sockets.in(socketZone).emit('updateUsers',room[socketZone]);
 	});
 
 });
