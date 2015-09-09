@@ -1,15 +1,13 @@
 var http = require('http');
-var io = require('socket.io')(http);
+var io = require('socket.io');
 
-http.createServer(function(request,response) {
+var server = http.createServer()
 
-});
-
-io.on('connection',function(socket) {
+server.on('connection',function(socket) {
 	console.log("Connection Made!");
 });
 
 
-http.listen(3000,function() {
+server.listen(3000,function() {
 	console.log("Listening on 3000");
 });
