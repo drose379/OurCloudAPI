@@ -32,7 +32,7 @@ io.sockets.on('connection',function(socket) {
 		
 		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 		
-		console.log(rooms[socketZone]);
+		console.log(rooms[socketZone].length);
 
 		//emit updateActiveUsers event with the array of users in the same room as the socket
 		io.sockets.in(socketZone).emit('updateUsers',rooms[socketZone]);
