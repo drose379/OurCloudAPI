@@ -17,7 +17,7 @@ io.sockets.on('connection',function(socket) {
 		var userData = JSON.parse(data);
 
 		socketUserId = userData[0];
-		socketZone = useData[1];
+		socketZone = userData[1];
 
 		socket.join(socketZone);
 
