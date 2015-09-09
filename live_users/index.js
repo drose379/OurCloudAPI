@@ -10,10 +10,6 @@ io.sockets.on('connection',function(socket) {
 	var socketUserName;
 	var socketUserImage;
 
-	socket.on('disconnect',function() {
-		//update the rooms object to remove this socket from its respective room., emit a 'updateUsers' event.
-	});
-
 	socket.on('userInfo',function(data) {
 		
 		var userData = JSON.parse(data);
@@ -44,7 +40,7 @@ io.sockets.on('connection',function(socket) {
 		var room = rooms[socketZone];
 		delete room[socketUserId];
 
-		//io.sockets.in(socketZone).emit('updateUsers',room[socketZone]);
+		io.sockets.in(socketZone).emit('updateUsers',room[socketZone]);
 	});
 
 });
