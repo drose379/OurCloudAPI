@@ -11,7 +11,7 @@ io.sockets.on('connection',function(socket) {
 	var socketUserImage;
 
 	socket.on('userInfo',function(data) {
-		
+
 		var userData = JSON.parse(data);
 
 		socketUserId = userData[0];
@@ -25,6 +25,8 @@ io.sockets.on('connection',function(socket) {
 			//add the room to the rooms object, then add user to their respective room
 			rooms[socketZone] = {};
 		}
+
+		console.log(Object.keys(rooms[socketZone]));
 		
 		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 		
@@ -34,11 +36,12 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('disconnect',function() {
+		console.log(Object.keys(room));
 		//remove userId from their room, emit updateUsers event
 		var room = rooms[socketZone];
 		delete room[socketUserId];
 
-		console.log(Object.keys(room));
+
 
 		//io.sockets.in(socketZone).emit('updateUsers',room[socketZone]);
 	});
