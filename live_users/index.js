@@ -14,11 +14,16 @@ io.sockets.on('connection',function(socket) {
 
 	socket.on('userInfo',function(data) {
 		//also make sure the socket joins this zone as a "room".
-
 		var userData = JSON.parse(data);
-		console.log(userData[0]);
 
-	})
+		socketUserId = userData[0];
+		socketZone = useData[1];
+
+		socket.join(socketZone);
+
+		io.sockets.emit('test',"Does this go to all rooms?");
+
+	});
 
 });
 
