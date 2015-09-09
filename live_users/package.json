@@ -1,0 +1,9 @@
+{
+  "name": "ourcloud-live-user-room",
+  "version": "0.0.1",
+  "description": "Testing rooms with socketio",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6"
+  }
+}
