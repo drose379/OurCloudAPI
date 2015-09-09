@@ -21,7 +21,7 @@ io.sockets.on('connection',function(socket) {
 
 		socket.join(socketZone);
 
-		io.sockets.emit('test',"Does this go to all rooms?");
+		io.sockets.in(socketZone).emit('test',"Does this go to all rooms?");
 
 	});
 
