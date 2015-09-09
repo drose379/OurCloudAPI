@@ -23,15 +23,17 @@ io.sockets.on('connection',function(socket) {
 		socketUserName = userData[2];
 		socketUserImage = userData[3];
 
-		console.log(socketUserName);
-
 		socket.join(socketZone);
 
 		if (socketZone in rooms == false) {
 			//add the room to the rooms object, then add user to their respective room
-		} else {
-			// add users info to their respective room
+			rooms[socketZone] = {};
 		}
+		
+		rooms[socketZone]["socketUserName"] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
+	
+
+		//emit updateActiveUsers event with the array of users in the same room as the socket
 
 	});
 
