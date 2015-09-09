@@ -7,21 +7,31 @@ io.sockets.on('connection',function(socket) {
 
 	var socketUserId;
 	var socketZone;
+	var socketUserName;
+	var socketUserImage;
 
 	socket.on('disconnect',function() {
-		console.log("Socket disconnected!");
+		//update the rooms object to remove this socket from its respective room., emit a 'updateUsers' event.
 	});
 
 	socket.on('userInfo',function(data) {
-		//also make sure the socket joins this zone as a "room".
+		
 		var userData = JSON.parse(data);
 
 		socketUserId = userData[0];
 		socketZone = userData[1];
+		socketUserName = userData[2];
+		socketUserImage = userData[3];
+
+		console.log(socketUserName);
 
 		socket.join(socketZone);
 
-		io.sockets.in(socketZone).emit('test',"Does this go to all rooms?");
+		if (socketZone in rooms == false) {
+			//add the room to the rooms object, then add user to their respective room
+		} else {
+			// add users info to their respective room
+		}
 
 	});
 
