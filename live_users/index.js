@@ -9,7 +9,7 @@ io.sockets.on('connection',function(socket) {
 		console.log("Socket disconnected!");
 	});
 
-	socket.on('testEvent',function(data) {
+	socket.on('roomName',function(data) {
 		console.log(data);
 	})
 
