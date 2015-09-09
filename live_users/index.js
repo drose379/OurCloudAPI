@@ -39,5 +39,13 @@ io.sockets.on('connection',function(socket) {
 
 	});
 
+	socket.on('disconnect',function() {
+		//remove userId from their room, emit updateUsers event
+		var room = rooms[socketZone];
+		delete room.socketUserId;
+
+		console.log(Object.keys(rooms[socketZone]));
+	});
+
 });
 
