@@ -1,4 +1,4 @@
-var http = require('http').Server(app);
+var http = require('http');
 var io = require('socket.io')(http);
 
 http.createServer(function(request,response) {
