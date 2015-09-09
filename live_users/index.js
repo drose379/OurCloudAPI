@@ -1,22 +1,11 @@
 var http = require('http');
-var io = require('socket.io')(http);
+var io = require('socket.io');
 
-var server = http.createServer(function(request,response) {
-	response.send("Ok");
-});
+var server = http.createServer()
 
-io.on('connection',function(socket) {
-
-	console.log("Connected!");
-	
-	socket.on('disconnect',function() {
-		console.log("Connection disconnected");
-	});
-
-	socket.on('testEvent',function(data) {
-		console.log(data);
-	});
-
+server.on('connection',function(socket) {
+	console.log("Connection Made!");
+	socket.join("Test");
 });
 
 
