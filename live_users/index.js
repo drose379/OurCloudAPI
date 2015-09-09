@@ -9,5 +9,9 @@ io.sockets.on('connection',function(socket) {
 		console.log("Socket disconnected!");
 	});
 
+	socket.on('testEvent',function(data) {
+		console.log(data);
+	})
+
 });
 
