@@ -2,8 +2,8 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get("/",function(request,response){
-
+app.get("/",function(request,response) {
+	response.send("testing");
 });
 
 io.on('connection',function(socket) {
