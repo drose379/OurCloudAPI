@@ -33,7 +33,7 @@ io.sockets.on('connection',function(socket) {
 
 		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
 		socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-
+		console.log("Sending an update");
 	});
 
 	socket.on('disconnect',function() {
@@ -41,11 +41,7 @@ io.sockets.on('connection',function(socket) {
 
 		var room = rooms[socketZone];
 		delete room[socketUserId];
-
-		console.log(JSON.stringify(room));
-
-		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		
 		socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
 	});
 
