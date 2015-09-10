@@ -34,7 +34,7 @@ io.sockets.on('connection',function(socket) {
 
 		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
 
-		io.sockets.emit('updateUsers',"Sent on connection");
+		io.sockets.in(socketZone).emit('updateUsers',"Sent on connection");
 
 	});
 
@@ -45,7 +45,7 @@ io.sockets.on('connection',function(socket) {
 		delete room[socketUserId];
 		
 		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		io.sockets.emit('updateUsers',"Sent on disconnect");
+		io.sockets.in(socketZone).emit('updateUsers',"Sent on disconnect");
 	});
 
 });
