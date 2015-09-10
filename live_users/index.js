@@ -27,7 +27,8 @@ io.sockets.on('connection',function(socket) {
 		
 		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 
-		io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		io.sockets.in(socketZone).emit("From on connecting!!");
 
 	});
 
@@ -38,7 +39,8 @@ io.sockets.on('connection',function(socket) {
 		delete room[socketUserId];
 
 		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		socket.broadcast.to(socketZone).emit("From on disconnecting!");
 	});
 
 });
