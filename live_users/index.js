@@ -39,10 +39,7 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('disconnect',function() {
-		socket.leave(socketZone);
-
-		var room = rooms[socketZone];
-		delete room[socketUserId];
+		socket.leave("UNH-Secure");
 		
 		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
 		io.sockets.in("UNH-Secure").emit('updateUsers',"Sent on disconnect");
