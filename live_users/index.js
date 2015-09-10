@@ -37,7 +37,7 @@ io.sockets.on('connection',function(socket) {
 		var room = rooms[socketZone];
 		delete room[socketUserId];
 
-		io.sockets.in(socketZone).broadcast('updateUsers',JSON.stringify(room[socketZone]));
+		io.sockets.in(socketZone).broadcast('updateUsers',JSON.stringify(rooms[socketZone]));
 	});
 
 });
