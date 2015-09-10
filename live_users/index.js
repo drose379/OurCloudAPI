@@ -34,6 +34,8 @@ io.sockets.on('connection',function(socket) {
 		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
 		socket.broadcast.to(socketZone).emit('updateUsers',"From connection");
 
+		console.log("userInfo called");
+
 	});
 
 
