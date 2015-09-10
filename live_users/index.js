@@ -19,12 +19,12 @@ io.sockets.on('connection',function(socket) {
 		socketUserName = userData[2];
 		socketUserImage = userData[3];
 
-		socket.join(socketZone);
-
+		socket.join("UNH-Secure");
+/*
 		if (socketZone in rooms == false) {
 			rooms[socketZone] = {};
 		}
-
+*/
 		// only emit the current list to the socket joining, then later, update the list and broadcast to all sockets in the room besides the new one
 		// since the socket just joining does not need to know about itself
 		
@@ -34,7 +34,7 @@ io.sockets.on('connection',function(socket) {
 
 		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
 
-		io.sockets.in(socketZone).emit('updateUsers',"Sent on connection");
+		io.sockets.in("UNH-Secure").emit('updateUsers',"Sent on connection");
 
 	});
 
@@ -45,7 +45,7 @@ io.sockets.on('connection',function(socket) {
 		delete room[socketUserId];
 		
 		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		io.sockets.in(socketZone).emit('updateUsers',"Sent on disconnect");
+		io.sockets.in("UNH-Secure").emit('updateUsers',"Sent on disconnect");
 	});
 
 });
