@@ -28,7 +28,7 @@ io.sockets.on('connection',function(socket) {
 		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 
 		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		io.broadcast.to(socketZone).emit('updateUsers',"From on connection");
+		io.sockets.in(socketZone).emit('updateUsers',"From on connection");
 
 	});
 
