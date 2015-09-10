@@ -27,23 +27,25 @@ io.sockets.on('connection',function(socket) {
 
 		// only emit the current list to the socket joining, then later, update the list and broadcast to all sockets in the room besides the new one
 		// since the socket just joining does not need to know about itself
-		socket.emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		
+		//socket.emit('updateUsers',JSON.stringify(rooms[socketZone]));
 		
 		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 
-		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		console.log("Sending an update");
+		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+
+		io.sockets.emit('updateUsers',"Sent on connection");
+
 	});
 
 	socket.on('disconnect',function() {
-		console.log("Sending an update (disconnect)");
 		socket.leave(socketZone);
 
 		var room = rooms[socketZone];
 		delete room[socketUserId];
 		
-		socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
+		io.sockets.emit('updateUsers',"Sent on disconnect");
 	});
 
 });
