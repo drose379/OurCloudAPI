@@ -37,6 +37,7 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('disconnect',function() {
+		console.log("Sending an update (disconnect)");
 		socket.leave(socketZone);
 
 		var room = rooms[socketZone];
