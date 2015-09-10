@@ -11,6 +11,7 @@ io.sockets.on('connection',function(socket) {
 	var socketUserImage;
 
 	socket.on('userInfo',function(data) {
+		console.log(io.sockets.sockets.length);
 
 		var userData = JSON.parse(data);
 
