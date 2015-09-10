@@ -33,6 +33,7 @@ io.sockets.on('connection',function(socket) {
 
 	socket.on('disconnect',function() {
 		console.log("Socket disconnected");
+		console.log(io.sockets.clients(socketZone));
 		socket.leave(socketZone);
 
 		var room = rooms[socketZone];
