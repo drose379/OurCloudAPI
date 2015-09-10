@@ -10,6 +10,8 @@ io.sockets.on('connection',function(socket) {
 	var socketUserName;
 	var socketUserImage;
 
+	//only emit the current list to the socket joining, then later, update the list and broadcast to all sockets in the room besiddes the new one, since socket does not need to know about itself
+
 	socket.on('userInfo',function(data) {
 
 		var userData = JSON.parse(data);
@@ -18,6 +20,8 @@ io.sockets.on('connection',function(socket) {
 		socketZone = userData[1];
 		socketUserName = userData[2];
 		socketUserImage = userData[3];
+
+		socket.emit('updateUsers',"From connection only to this socket, first time connection, getting list of current users");
 
 		socket.join(socketZone);
 
@@ -28,9 +32,11 @@ io.sockets.on('connection',function(socket) {
 		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 
 		//io.sockets.in(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
-		io.sockets.in(socketZone).emit('updateUsers',"From on connection");
+		socket.broadcast.to(socketZone).emit('updateUsers',"From connection");
 
 	});
+
+
 
 	socket.on('disconnect',function() {
 		socket.leave(socketZone);
