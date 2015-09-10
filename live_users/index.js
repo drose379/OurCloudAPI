@@ -30,7 +30,6 @@ io.sockets.on('connection',function(socket) {
 		
 		//socket.emit('updateUsers',JSON.stringify(rooms[socketZone]));
 		
-		rooms[socketZone][socketUserId] = JSON.stringify([socketUserId,socketZone,socketUserName,socketUserImage]);
 
 		//socket.broadcast.to(socketZone).emit('updateUsers',JSON.stringify(rooms[socketZone]));
 
