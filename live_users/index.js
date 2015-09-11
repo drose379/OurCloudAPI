@@ -14,7 +14,14 @@ io.sockets.on('connection',function(socket) {
 
 	socket.on('socketUserInfo',function(data) {
 		var jsonUserInfo = JSON.parse(data);
-		console.log(jsonUserInfo[0]);
+
+		socketUserId = jsonUserInfo[0];
+		socketZone = jsonUserInfo[1];
+		socketUserName = jsonUserInfo[2];
+		socketUserImage = jsonUserInfo[3];
+
+		io.sockets.emit('updateUsers',"OK, saved new sockets data!");
+
 	});
 
 	socket.on('disconnect',function() {
