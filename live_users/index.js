@@ -12,7 +12,9 @@ io.sockets.on('connection',function(socket) {
 
 	console.log("Connection");
 
-	io.sockets.emit('updateUsers',"Sent on connect");
+	socket.on('socketInfo',function(data) {
+		console.log("Received event from client");
+	});
 
 	socket.on('disconnect',function() {
 
