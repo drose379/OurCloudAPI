@@ -11,6 +11,7 @@ io.sockets.on('connection',function(socket) {
 	var socketUserImage;
 
 	socket.on('connect',function() {
+		//for testing
 		socket.join("UNH-Secure");
 		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connect");
 	});
