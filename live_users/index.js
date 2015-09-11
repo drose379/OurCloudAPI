@@ -27,6 +27,7 @@ io.sockets.on('connection',function(socket) {
 		} else {
 			console.log("You are the frist user in the zone, creating the item in the array");
 			rooms[socketZone] = {};
+			console.log(JSON.stringify(rooms));
 		}
 
 	});
