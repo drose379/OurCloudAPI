@@ -17,16 +17,16 @@ io.sockets.on('connection',function(socket) {
 
 		userId = jsonUserInfo[0];
 		userZone = jsonUserInfo[1];
-		socketUserName = jsonUserInfo[2];
+		userName = jsonUserInfo[2];
 		userImage = jsonUserInfo[3];
 
-		socket.join(socketZone);
+		socket.join(userZone);
 
 		if (userZone in rooms == false) {
 			rooms[userZone] = {};
 		}
 
-		rooms[userZone][userId] = JSON.stringify([socketUserImage,socket]);
+		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
 
 		console.log(JSON.stringify(rooms[userZone]));
 	});
