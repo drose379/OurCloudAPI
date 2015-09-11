@@ -1,5 +1,5 @@
 
-var io = require('socket.io').listen(3001);
+var io = require('socket.io').listen(3000);
 
 var rooms = {}
 
@@ -11,11 +11,9 @@ io.sockets.on('connection',function(socket) {
 	var socketUserImage;
 
 	socket.on('connect',function() {
-		//for testing
 		socket.join("UNH-Secure");
 		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connect");
-
-		console.log("Received connect event");
+		console.log("Connection");
 	});
 
 	socket.on('disconnect',function() {
