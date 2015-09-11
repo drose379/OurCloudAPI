@@ -20,7 +20,14 @@ io.sockets.on('connection',function(socket) {
 		socketUserName = jsonUserInfo[2];
 		socketUserImage = jsonUserInfo[3];
 
-		io.sockets.emit('updateUsers',"OK, saved new sockets data!");
+		socket.join(socketZone);
+
+		if (socketZone in rooms) {
+			console.log("A user in the same zone has already joined");
+		} else {
+			console.log("You are the frist user in the zone, creating the item in the array");
+			rooms[socketZone] = {};
+		}
 
 	});
 
