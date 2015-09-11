@@ -1,5 +1,5 @@
 
-var io = require('socket.io').listen(3000);
+var io = require('socket.io').listen(3001);
 
 var rooms = {}
 
