@@ -10,19 +10,9 @@ io.sockets.on('connection',function(socket) {
 	var socketUserName;
 	var socketUserImage;
 
-	socket.on('userInfo',function(data) {
-
-		var userData = JSON.parse(data);
-
-		socketUserId = userData[0];
-		socketZone = userData[1];
-		socketUserName = userData[2];
-		socketUserImage = userData[3];
-
-		socket.join(socketZone);
-
-		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connection");
-
+	socket.on('connect',function() {
+		socket.join("UNH-Secure");
+		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connect");
 	});
 
 	socket.on('disconnect',function() {
