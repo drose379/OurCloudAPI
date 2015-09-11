@@ -10,10 +10,12 @@ io.sockets.on('connection',function(socket) {
 	var socketUserName;
 	var socketUserImage;
 
+	console.log("Connection");
+
 	socket.on('connect',function() {
 		socket.join("UNH-Secure");
 		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connect");
-		console.log("Connection");
+
 	});
 
 	socket.on('disconnect',function() {
