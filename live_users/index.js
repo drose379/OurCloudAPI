@@ -29,13 +29,13 @@ io.sockets.on('connection',function(socket) {
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
 
 		//broadcast the object with the new socket to the rest of the sockets in the room.
-		socket.broadcast.to(userZone).emit('updateUsers',JSON.stringify(rooms[userZone]));
+		socket.broadcast.emit('updateUsers',JSON.stringify(rooms[userZone]));
 	});
 
 	socket.on('disconnect',function() {
 		delete rooms[userZone][userId];
 
-		socket.broadcast.to(userZone).emit('updateUsers',JSON.stringify(rooms[userZone]));
+		socket.broadcast.emit('updateUsers',JSON.stringify(rooms[userZone]));
 	});
 
 });
