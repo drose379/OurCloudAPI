@@ -19,16 +19,16 @@ io.sockets.on('connection',function(socket) {
 		socketUserName = userData[2];
 		socketUserImage = userData[3];
 
-		socket.join("UNH-Secure");
+		socket.join(socketZone);
 
-		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connection");
+		socket.broadcast.to(socketZone).emit('updateUsers',"Sent on connection");
 
 	});
 
 	socket.on('disconnect',function() {
 		socket.leave("UNH-Secure");
 		
-		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on disconnect");
+		socket.broadcast.to(socketZone).emit('updateUsers',"Sent on disconnect");
 	});
 
 });
