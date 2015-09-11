@@ -12,7 +12,7 @@ io.sockets.on('connection',function(socket) {
 
 	console.log("Connection");
 
-	socket.on('socketInfo',function(data) {
+	socket.on('socketInfo',function() {
 		console.log("Received event from client");
 	});
 
