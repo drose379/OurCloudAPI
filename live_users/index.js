@@ -14,6 +14,8 @@ io.sockets.on('connection',function(socket) {
 		//for testing
 		socket.join("UNH-Secure");
 		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connect");
+
+		console.log("Received connect event");
 	});
 
 	socket.on('disconnect',function() {
