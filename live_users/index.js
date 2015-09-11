@@ -21,14 +21,16 @@ io.sockets.on('connection',function(socket) {
 
 		socket.join(socketZone);
 
-		socket.broadcast.to(socketZone).emit('updateUsers',"Sent on connection");
+		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connection");
 
 	});
 
 	socket.on('disconnect',function() {
-		socket.leave("UNH-Secure");
+
+		socket.leave(socketZone);
 		
-		socket.broadcast.to(socketZone).emit('updateUsers',"Sent on disconnect");
+		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on disconnect");
+
 	});
 
 });
