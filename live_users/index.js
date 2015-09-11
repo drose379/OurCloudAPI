@@ -12,11 +12,7 @@ io.sockets.on('connection',function(socket) {
 
 	console.log("Connection");
 
-	socket.on('connect',function() {
-		socket.join("UNH-Secure");
-		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on connect");
-		console.log("Received event");
-	});
+	io.sockets.emit('updateUsers',"Sent on connect");
 
 	socket.on('disconnect',function() {
 
