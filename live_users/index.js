@@ -20,8 +20,6 @@ io.sockets.on('connection',function(socket) {
 		userName = jsonUserInfo[2];
 		userImage = jsonUserInfo[3];
 
-		socket.join(userZone);
-
 		if (userZone in rooms == false) {
 			rooms[userZone] = {};
 		}
@@ -29,13 +27,13 @@ io.sockets.on('connection',function(socket) {
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
 
 		//broadcast the object with the new socket to the rest of the sockets in the room.
-		socket.broadcast.emit('updateUsers',JSON.stringify(rooms[userZone]));
+		socket.broadcast.emit('updateUsers',JSON.stringify(rooms));
 	});
 
 	socket.on('disconnect',function() {
 		delete rooms[userZone][userId];
 
-		socket.broadcast.emit('updateUsers',JSON.stringify(rooms[userZone]));
+		socket.broadcast.emit('updateUsers',JSON.stringify(rooms));
 	});
 
 });
