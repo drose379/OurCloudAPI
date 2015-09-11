@@ -25,10 +25,11 @@ io.sockets.on('connection',function(socket) {
 		if (userZone in rooms == false) {
 			rooms[userZone] = {};
 		}
-
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
 
-		console.log(JSON.stringify(rooms[userZone]));
+		//broadcast the object with the new socket to the rest of the sockets in the room.
+		io.sockets.in(userZone).emit('updateUsers',JSON.stringify(rooms[userZone]));
+
 	});
 
 	socket.on('disconnect',function() {
