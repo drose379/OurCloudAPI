@@ -5,41 +5,38 @@ var rooms = {}
 
 io.sockets.on('connection',function(socket) {
 
-	var socketUserId;
-	var socketZone;
-	var socketUserName;
-	var socketUserImage;
+	var userId;
+	var userZone;
+	var userName;
+	var userImage;
 
 	console.log("Connection");
 
 	socket.on('socketUserInfo',function(data) {
 		var jsonUserInfo = JSON.parse(data);
 
-		socketUserId = jsonUserInfo[0];
-		socketZone = jsonUserInfo[1];
+		userId = jsonUserInfo[0];
+		userZone = jsonUserInfo[1];
 		socketUserName = jsonUserInfo[2];
-		socketUserImage = jsonUserInfo[3];
+		userImage = jsonUserInfo[3];
 
 		socket.join(socketZone);
 
-		if (socketZone in rooms) {
-			console.log("A user in the same zone has already joined");
-		} else {
-			console.log("You are the frist user in the zone, creating the item in the array");
-			rooms[socketZone] = {};
-			console.log(JSON.stringify(rooms));
+		if (userZone in rooms == false) {
+			rooms[userZone] = {};
 		}
 
+		rooms[userZone][userId] = JSON.stringify([socketUserImage,socket]);
+
+		console.log(JSON.stringify(rooms[userZone]));
 	});
 
 	socket.on('disconnect',function() {
+		socket.leave(userZone);
 
-		socket.leave(socketZone);
+		delete rooms[userZone][userId];
 
-		console.log("Socket Disconncted");
-		
-		socket.broadcast.to("UNH-Secure").emit('updateUsers',"Sent on disconnect");
-
+		console.log(JSON.stringify(rooms[userZone]));
 	});
 
 });
