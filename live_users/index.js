@@ -12,8 +12,9 @@ io.sockets.on('connection',function(socket) {
 
 	console.log("Connection");
 
-	socket.on('socketInfo',function() {
-		console.log("Received event from client");
+	socket.on('socketUserInfo',function(data) {
+		var jsonUserInfo = JSON.parse(data);
+		console.log(jsonUserInfo[0]);
 	});
 
 	socket.on('disconnect',function() {
