@@ -26,20 +26,21 @@ io.sockets.on('connection',function(socket) {
 
 		if (userZone in rooms == false) {
 			rooms[userZone] = {};
-			console.log("Created new room for " + userZone);
 		}
 
-		io.sockets.in(userZone).emit('updateUsers',"User Joined! " + userName);
+		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
 
-		userCount++;
-		console.log(userCount);
+		console.log(rooms[userZone]);
+
+		io.sockets.in(userZone).emit('updateUsers',"User Joined! " + userName);
 	});
 
 	socket.on('disconnect',function() {
-		io.sockets.in(userZone).emit('updateUsers',"User Left! " + userName);
+		delete rooms[userZone][userId];
 
-		userCount--;
-		console.log(userCount);
+		console.log(rooms[userZone]);
+
+		io.sockets.in(userZone).emit('updateUsers',"User Left! " + userName);
 	});
 
 });
