@@ -25,14 +25,14 @@ io.sockets.on('connection',function(socket) {
 
 		socket.join(userZone);
 
-		io.sockets.in("testZone").emit('updateUsers',"User Joined! " + userName);
+		io.sockets.in(userZone).emit('updateUsers',"User Joined! " + userName);
 
 		userCount++;
 		console.log(userCount);
 	});
 
 	socket.on('disconnect',function() {
-		io.sockets.in("testZone").emit('updateUsers',"User Left! " + userName);
+		io.sockets.in(userZone).emit('updateUsers',"User Left! " + userName);
 
 		userCount--;
 		console.log(userCount);
