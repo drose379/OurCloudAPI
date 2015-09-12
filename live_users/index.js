@@ -5,6 +5,8 @@ var userCount = 0;
 
 io.sockets.on('connection',function(socket) {
 
+	socket.join("testZone");
+
 	var userId;
 	var userZone;
 	var userName;
