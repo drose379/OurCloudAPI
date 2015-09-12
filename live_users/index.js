@@ -23,12 +23,15 @@ io.sockets.on('connection',function(socket) {
 		userImage = jsonUserInfo[3];
 
 
-		io.sockets.emit('updateUsers',"User Joined! " + userName);
+		io.sockets.in("testZone").emit('updateUsers',"User Joined! " + userName);
+
 		userCount++;
+		console.log(userCount);
 	});
 
 	socket.on('disconnect',function() {
 		io.sockets.emit('updateUsers',"User Left! " + userName);
+
 		userCount--;
 		console.log(userCount);
 	});
