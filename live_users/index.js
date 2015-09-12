@@ -5,8 +5,6 @@ var userCount = 0;
 
 io.sockets.on('connection',function(socket) {
 
-	socket.join("testZone");
-
 	var userId;
 	var userZone;
 	var userName;
@@ -17,6 +15,8 @@ io.sockets.on('connection',function(socket) {
 	//rooms not working properly. attempt to implement own room functionality with filtering a master object,, TRY NAMESPACES
 
 	socket.on('socketUserInfo',function(data) {
+		socket.join("testZone");
+
 		var jsonUserInfo = JSON.parse(data);
 
 		userId = jsonUserInfo[0];
