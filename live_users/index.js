@@ -1,7 +1,7 @@
 
 var io = require('socket.io').listen(3000);
-
-var rooms = {}
+	
+var userCount = 0;
 
 io.sockets.on('connection',function(socket) {
 
@@ -12,6 +12,8 @@ io.sockets.on('connection',function(socket) {
 
 	console.log("Connection");
 
+	//rooms not working properly. attempt to implement own room functionality with filtering a master object,, TRY NAMESPACES
+
 	socket.on('socketUserInfo',function(data) {
 		var jsonUserInfo = JSON.parse(data);
 
@@ -20,20 +22,15 @@ io.sockets.on('connection',function(socket) {
 		userName = jsonUserInfo[2];
 		userImage = jsonUserInfo[3];
 
-		if (userZone in rooms == false) {
-			rooms[userZone] = {};
-		}
 
-		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
-
-		//broadcast the object with the new socket to the rest of the sockets in the room.
-		socket.emit('updateUsers',JSON.stringify(rooms[userZone]));
+		socket.emit('updateUsers',"User Joined! " + userName);
+		userCount++;
 	});
 
 	socket.on('disconnect',function() {
-		delete rooms[userZone][userId];
-
-		socket.emit('updateUsers',JSON.stringify(rooms[userZone]));
+		socket.emit('updateUsers',"User Left! " + userName);
+		userCount--;
+		console.log(userCount);
 	});
 
 });
