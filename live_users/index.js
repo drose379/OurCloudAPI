@@ -32,7 +32,7 @@ io.sockets.on('connection',function(socket) {
 
 		console.log(rooms[userZone]);
 
-		io.sockets.in(userZone).emit('updateUsers',"User Joined! " + userName);
+		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 	});
 
 	socket.on('disconnect',function() {
@@ -40,7 +40,7 @@ io.sockets.on('connection',function(socket) {
 
 		console.log(rooms[userZone]);
 
-		io.sockets.in(userZone).emit('updateUsers',"User Left! " + userName);
+		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 	});
 
 });
