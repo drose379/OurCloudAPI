@@ -28,7 +28,7 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('disconnect',function() {
-		sockets.emit('updateUsers',"User Left! " + userName);
+		socket.emit('updateUsers',"User Left! " + userName);
 		userCount--;
 		console.log(userCount);
 	});
