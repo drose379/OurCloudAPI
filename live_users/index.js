@@ -15,7 +15,6 @@ io.sockets.on('connection',function(socket) {
 	//rooms not working properly. attempt to implement own room functionality with filtering a master object,, TRY NAMESPACES
 
 	socket.on('socketUserInfo',function(data) {
-		socket.join("testZone");
 
 		var jsonUserInfo = JSON.parse(data);
 
@@ -24,6 +23,7 @@ io.sockets.on('connection',function(socket) {
 		userName = jsonUserInfo[2];
 		userImage = jsonUserInfo[3];
 
+		socket.join(userZone);
 
 		io.sockets.in("testZone").emit('updateUsers',"User Joined! " + userName);
 
