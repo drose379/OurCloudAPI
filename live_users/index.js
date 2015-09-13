@@ -33,8 +33,7 @@ io.sockets.on('connection',function(socket) {
 		socketDictionary[userId] = JSON.stringify([userId,socket.id]);
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
-
-		console.log(socketDictionary);
+		
 	});
 
 	socket.on('privateChat',function(data) {
@@ -45,6 +44,26 @@ io.sockets.on('connection',function(socket) {
 		 * also try socket.to(socketID).emit(privateMessage,{from,message});
 		 */
 
+		 var messageInfo = JSON.parse(data);
+
+		 var receiverUserId = data[0];
+		 var message = data[1];
+
+		 //grab socket id by using the passed userID (receiver) and pulling the socketId correlated with this value
+		 //emit to the socketID of receiver with the message, and the userID of the sender
+
+		 //loop over socketDictionary and grab array with the key of the receiverID
+		 //grab the socketID from the array (value 1)
+		 //emit the message to that socket with its socketID
+
+		 for(var id in socketDictionary) {
+		 	if (id == receiverUserId) {
+		 		var socketInfo = socketDictionary[id];
+		 		var socketId = socketInfo[1];
+		 		//emit the message and sender to the socketID (sender will just be the userName global variable)
+		 		console.log(socketInfo)
+		 	}
+		 }
 
 	});
 
