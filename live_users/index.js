@@ -3,7 +3,7 @@ var io = require('socket.io').listen(3000);
 	
 var userCount = 0;
 var rooms = {};
-var socketDictionary = [];
+var socketDictionary = {};
 
 //in socketUserInfo event, add an array to socketDictionary with correlation between userId -> socketId
 
@@ -30,7 +30,7 @@ io.sockets.on('connection',function(socket) {
 		}
 
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
-		socketDictionary.push([userId,socket.id]);
+		socketDictionary[userId] = JSON.stringify([userId,socketId]);
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 
