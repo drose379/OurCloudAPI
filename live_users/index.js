@@ -37,13 +37,12 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('privateChat',function(data) {
-		console.log("Receivede private chat event");
 		/**
 		 * data contains {User ID (user who is receiving the message)}
 		 * Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
 		 * emit the private message to the socketId with io.to(socketId).emit(privateMessage,{from,message}).
 		 * also try socket.to(socketID).emit(privateMessage,{from,message});
-		 
+		 */
 
 		 var messageInfo = JSON.parse(data);
 
@@ -62,17 +61,15 @@ io.sockets.on('connection',function(socket) {
 		 		var socketInfo = socketDictionary[id];
 		 		var socketId = socketInfo[1];
 		 		//emit the message and sender to the socketID (sender will just be the userName global variable)
-		 		console.log(socketInfo)
+		 		console.log(socketInfo);
 		 	}
 		 }
-		 */
 
 	});
 
 	socket.on('disconnect',function() {
 		delete rooms[userZone][userId];
 		delete socketDictionary[userId];
-		console.log(socketDictionary);
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 	});
 
