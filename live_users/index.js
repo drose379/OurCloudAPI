@@ -6,15 +6,10 @@ var rooms = {};
 
 io.sockets.on('connection',function(socket) {
 
-	
-	io.to(socket.id).emit('test',"Ok, the to(socketID) works!");
-
 	var userId;
 	var userZone;
 	var userName;
 	var userImage;
-
-	//rooms not working properly. attempt to implement own room functionality with filtering a master object,, TRY NAMESPACES
 
 	socket.on('socketUserInfo',function(data) {
 
@@ -34,6 +29,13 @@ io.sockets.on('connection',function(socket) {
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
+	});
+
+	socket.on('privateChat',function(data) {
+		//data contains {User ID (user who is receiving the message)}
+		//Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
+		//emit the private message to the socketId with io.to(socketId).emit(privateMessage,{from,message}).
+			//also try socket.to(socketID).emit(privateMessage,{from,message});
 	});
 
 	socket.on('disconnect',function() {
