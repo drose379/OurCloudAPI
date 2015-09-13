@@ -56,14 +56,7 @@ io.sockets.on('connection',function(socket) {
 		 //grab the socketID from the array (value 1)
 		 //emit the message to that socket with its socketID
 
-		 for(var id in socketDictionary) {
-		 	if (id == receiverUserId) {
-		 		var socketInfo = socketDictionary[id];
-		 		var socketId = socketInfo[1];
-		 		//emit the message and sender to the socketID (sender will just be the userName global variable)
-		 		console.log(socketInfo);
-		 	}
-		 }
+
 
 	});
 
