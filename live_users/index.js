@@ -6,7 +6,8 @@ var rooms = {};
 
 io.sockets.on('connection',function(socket) {
 
-	console.log(socket.id);
+	
+	io.to(socket.id).emit('test',"Ok, the to(socketID) works!");
 
 	var userId;
 	var userZone;
@@ -33,8 +34,6 @@ io.sockets.on('connection',function(socket) {
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
-
-		io.to(socket.id).emit('test',"Ok, the to(socketID) works!");
 	});
 
 	socket.on('disconnect',function() {
