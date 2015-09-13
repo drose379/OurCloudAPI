@@ -49,7 +49,6 @@ io.sockets.on('connection',function(socket) {
 		 var receiverUserId = messageInfo[0];
 		 var message = messageInfo[1];
 
-		 console.log(message);
 
 		 //grab socket id by using the passed userID (receiver) and pulling the socketId correlated with this value
 		 //emit to the socketID of receiver with the message, and the userID of the sender
@@ -58,6 +57,10 @@ io.sockets.on('connection',function(socket) {
 		 //grab the socketID from the array (value 1)
 		 //emit the message to that socket with its socketID
 
+
+		 for(id in socketDictionary) {
+		 	console.log(id);
+		 }
 
 
 	});
