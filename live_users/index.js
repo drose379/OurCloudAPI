@@ -3,6 +3,9 @@ var io = require('socket.io').listen(3000);
 	
 var userCount = 0;
 var rooms = {};
+var socketDictionary = [];
+
+//in socketUserInfo event, add an array to socketDictionary with correlation between userId -> socketId
 
 io.sockets.on('connection',function(socket) {
 
@@ -27,15 +30,22 @@ io.sockets.on('connection',function(socket) {
 		}
 
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
+		socketDictionpary.push([userId,socket.id]);
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
+
+		console.log(socketDictionary);
 	});
 
 	socket.on('privateChat',function(data) {
-		//data contains {User ID (user who is receiving the message)}
-		//Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
-		//emit the private message to the socketId with io.to(socketId).emit(privateMessage,{from,message}).
-			//also try socket.to(socketID).emit(privateMessage,{from,message});
+		/**
+		 * data contains {User ID (user who is receiving the message)}
+		 * Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
+		 * emit the private message to the socketId with io.to(socketId).emit(privateMessage,{from,message}).
+		 * also try socket.to(socketID).emit(privateMessage,{from,message});
+		 */
+
+
 	});
 
 	socket.on('disconnect',function() {
