@@ -37,7 +37,7 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('privateChat',function(data) {
-		/**
+		/*
 		 * data contains {User ID (user who is receiving the message)}
 		 * Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
 		 * emit the private message to the socketId with io.to(socketId).emit(privateMessage,{from,message}).
