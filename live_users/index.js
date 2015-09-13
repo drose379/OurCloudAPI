@@ -59,7 +59,10 @@ io.sockets.on('connection',function(socket) {
 
 
 		 for(id in socketDictionary) {
-		 	console.log(id);
+		 	if (id == receiverUserId) {
+		 		var socketInfo = socketDictionary[id];
+		 		console.log(socketInfo);
+		 	}
 		 }
 
 
