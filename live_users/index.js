@@ -30,7 +30,7 @@ io.sockets.on('connection',function(socket) {
 		}
 
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
-		socketDictionary[userId] = JSON.stringify([userId,socketId]);
+		socketDictionary[userId] = JSON.stringify([userId,socket.id]);
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 
