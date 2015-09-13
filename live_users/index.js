@@ -37,7 +37,25 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('privateChat',function(data) {
+		/*
+		 * data contains {User ID (user who is receiving the message)}
+		 * Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
+		 * emit the private message to the socketId with io.to(socketId).emit(privateMessage,{from,message}).
+		 * also try socket.to(socketID).emit(privateMessage,{from,message});
+		 
 
+		 var messageInfo = JSON.parse(data);
+
+		 var receiverUserId = data[0];
+		 var message = data[1];
+		*/	
+
+		 //grab socket id by using the passed userID (receiver) and pulling the socketId correlated with this value
+		 //emit to the socketID of receiver with the message, and the userID of the sender
+
+		 //loop over socketDictionary and grab array with the key of the receiverID
+		 //grab the socketID from the array (value 1)
+		 //emit the message to that socket with its socketID
 
 
 
