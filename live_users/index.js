@@ -34,7 +34,7 @@ io.sockets.on('connection',function(socket) {
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 
-		io.sockets.socket.to(socket.id).emit('test',"Ok, the to(socketID) works!");
+		io.to(socket.id).emit('test',"Ok, the to(socketID) works!");
 	});
 
 	socket.on('disconnect',function() {
