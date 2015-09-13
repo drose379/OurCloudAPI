@@ -30,7 +30,7 @@ io.sockets.on('connection',function(socket) {
 		}
 
 		rooms[userZone][userId] = JSON.stringify([userName,userImage]);
-		socketDictionpary.push([userId,socket.id]);
+		socketDictionary.push([userId,socket.id]);
 
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 
@@ -50,7 +50,8 @@ io.sockets.on('connection',function(socket) {
 
 	socket.on('disconnect',function() {
 		delete rooms[userZone][userId];
-
+		delete socketDictionary[userId];
+		console.log(socketDictionary);
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 	});
 
