@@ -60,9 +60,9 @@ io.sockets.on('connection',function(socket) {
 
 		 for(id in socketDictionary) {
 		 	if (id == receiverUserId) {
-		 		var socketInfo = socketDictionary[id];
+		 		var socketInfo = JSON.parse(socketDictionary[id]);
 		 		io.to(socketInfo[1]).emit('privateMessage',"This is a private message!");
-		 		console.log("Broadcasted to " + socketInfo[0]);
+		 		console.log("Broadcasted to " + socketInfo[1]);
 		 	}
 		 }
 
