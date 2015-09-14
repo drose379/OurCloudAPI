@@ -62,7 +62,7 @@ io.sockets.on('connection',function(socket) {
 		 	if (id == receiverUserId) {
 		 		var socketInfo = socketDictionary[id];
 		 		io.to(socketInfo[1]).emit('privateMessage',"This is a private message!");
-		 		console.log("Broadcasted to " + socketInfo[1]);
+		 		console.log("Broadcasted to " + socketInfo);
 		 	}
 		 }
 
