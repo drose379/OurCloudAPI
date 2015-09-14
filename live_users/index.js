@@ -59,15 +59,11 @@ io.sockets.on('connection',function(socket) {
 		 for(id in socketDictionary) {
 		 	if (id == receiverUserId) {
 		 		var socketInfo = JSON.parse(socketDictionary[id]);
-		 		socket.to(socketInfo[1]).emit('privateMessage',message);
+		 		socket.to(socketInfo[1]).emit('privateMessage',JSON.stringify([userId,message])); // userID here is the sender ID (user id of this socket). So the receiver knows who from
 		 	}
 		 }
 
 
-	});
-
-	socket.on('privateMessage',function(data) {
-		console.log(userName + " Received private message");
 	});
 
 	socket.on('disconnect',function() {
