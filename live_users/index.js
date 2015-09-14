@@ -59,8 +59,7 @@ io.sockets.on('connection',function(socket) {
 		 for(id in socketDictionary) {
 		 	if (id == receiverUserId) {
 		 		var socketInfo = JSON.parse(socketDictionary[id]);
-		 		socket.to(socketInfo[1]).emit('privateMessage',"This is a private message!");
-		 		console.log("Broadcasted to " + socketInfo[1]);
+		 		socket.to(socketInfo[1]).emit('privateMessage',message);
 		 	}
 		 }
 
@@ -74,7 +73,6 @@ io.sockets.on('connection',function(socket) {
 	socket.on('disconnect',function() {
 		delete rooms[userZone][userId];
 		delete socketDictionary[userId];
-		console.log("Disconnected");
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 	});
 
