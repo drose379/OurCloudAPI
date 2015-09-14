@@ -36,7 +36,7 @@ io.sockets.on('connection',function(socket) {
 
 	});
 
-	socket.on('privateChat',function(data) {
+	socket.on('sendPrivateMessage',function(data) {
 		/*
 		 * data contains {User ID (user who is receiving the message)}
 		 * Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
@@ -61,11 +61,15 @@ io.sockets.on('connection',function(socket) {
 		 for(id in socketDictionary) {
 		 	if (id == receiverUserId) {
 		 		var socketInfo = socketDictionary[id];
-		 		console.log(socketInfo);
+		 		socket.to(socketInfo[1]).emit("privateMessage","This is a private message!");
 		 	}
 		 }
 
 
+	});
+
+	socket.on('privateMessage',function(data) {
+		console.log(userName + " Received private message");
 	});
 
 	socket.on('disconnect',function() {
