@@ -61,7 +61,7 @@ io.sockets.on('connection',function(socket) {
 		 for(id in socketDictionary) {
 		 	if (id == receiverUserId) {
 		 		var socketInfo = socketDictionary[id];
-		 		socket.to(socketInfo[1]).emit('privateMessage',"This is a private message!");
+		 		io.to(socketInfo[1]).emit('privateMessage',"This is a private message!");
 		 	}
 		 }
 
