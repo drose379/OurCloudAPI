@@ -42,21 +42,19 @@ io.sockets.on('connection',function(socket) {
 		 * Need to find the socketID for the given userID (store each socketID in a socketsDictionary object with correlations to userId -> socketId)
 		 * emit the private message to the socketId with io.to(socketId).emit(privateMessage,{from,message}).
 		 * also try socket.to(socketID).emit(privateMessage,{from,message});
+
+		 * grab socket id by using the passed userID (receiver) and pulling the socketId correlated with this value
+		 * emit to the socketID of receiver with the message, and the userID of the sender
+
+		 * loop over socketDictionary and grab array with the key of the receiverID
+		 * grab the socketID from the array (value 1)
+		 * emit the message to that socket with its socketID
 		 */		 
 
 		 var messageInfo = JSON.parse(data);
 
 		 var receiverUserId = messageInfo[0];
 		 var message = messageInfo[1];
-
-
-		 //grab socket id by using the passed userID (receiver) and pulling the socketId correlated with this value
-		 //emit to the socketID of receiver with the message, and the userID of the sender
-
-		 //loop over socketDictionary and grab array with the key of the receiverID
-		 //grab the socketID from the array (value 1)
-		 //emit the message to that socket with its socketID
-
 
 		 for(id in socketDictionary) {
 		 	if (id == receiverUserId) {
