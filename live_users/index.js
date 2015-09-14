@@ -73,6 +73,7 @@ io.sockets.on('connection',function(socket) {
 
 	socket.on('disconnect',function() {
 		delete rooms[userZone][userId];
+		console.log("Before deleting socket " + socketDictionary);
 		delete socketDictionary[userId];
 		console.log(socketDictionary[userId]);
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
