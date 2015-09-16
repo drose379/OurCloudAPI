@@ -67,12 +67,15 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('disconnect',function() {
+		//add a check to make sure typeof rooms[userZone] is an object, and only delete if its an object, if undefined or null, do not attempt delete
 		console.log( typeof rooms[userZone] );
 		if (typeof rooms[userZone] !== 'object') {
 			console.log(userZone);
 			console.log(userId);
+		} else {
+			delete rooms[userZone][userId];
 		}
-		delete rooms[userZone][userId];
+
 		delete socketDictionary[userId];
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 	});
