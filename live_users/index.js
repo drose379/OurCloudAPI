@@ -68,6 +68,10 @@ io.sockets.on('connection',function(socket) {
 
 	socket.on('disconnect',function() {
 		console.log( typeof rooms[userZone] );
+		if (typeof rooms[userZone] !== 'undefined') {
+			console.log(userZone);
+			console.log(userId);
+		}
 		delete rooms[userZone][userId];
 		delete socketDictionary[userId];
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
