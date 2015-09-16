@@ -68,7 +68,7 @@ io.sockets.on('connection',function(socket) {
 
 	socket.on('disconnect',function() {
 		console.log( typeof rooms[userZone] );
-		if (typeof rooms[userZone] !== 'undefined') {
+		if (typeof rooms[userZone] !== 'object') {
 			console.log(userZone);
 			console.log(userId);
 		}
