@@ -67,8 +67,11 @@ io.sockets.on('connection',function(socket) {
 	});
 
 	socket.on('disconnect',function() {
-		console.log(userName + " disconnected");
-		delete rooms[userZone][userId];
+	
+		if (userName != "undefined") {
+			delete rooms[userZone][userId];
+			console.log(userName + " disconnected");
+		}
 		delete socketDictionary[userId];
 		io.sockets.in(userZone).emit('updateUsers',rooms[userZone]);
 	});
