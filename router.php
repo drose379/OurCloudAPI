@@ -12,6 +12,9 @@ require 'getZonePosts.php';
 
 require 'postImageUpload.php';
 
+//live user system
+require 'newUserEnter.php';
+
 class Router {
 
 	private $routes = [];
@@ -30,7 +33,8 @@ class Router {
 			"/updateZoneName" => [new zoneNameUpdate,"run"],
 			"/getZonePosts" => [new getZonePosts,"run"],
 			"/getPostComments" => [new grabPostComments,"run"],
-			"/postImageUpload" => [new postImageUpload,"run"]
+			"/postImageUpload" => [new postImageUpload,"run"],
+			"/live/newUserEnter" => [new newUserEnter,"run"]
 		];
 	}
 
