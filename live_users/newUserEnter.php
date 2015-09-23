@@ -26,7 +26,7 @@ class newUserEnter {
 		$this->profileImage = $post[4];
 
 		$this->insertLiveUser();
-		$gcmIds = this->getUsersOfZone();
+		$gcmIds = $this->getUsersOfZone();
 		$this->sendGcmNotification($gcmIds);
 
 	}
@@ -49,7 +49,7 @@ class newUserEnter {
 		$stmt = $con->prepare("SELECT user_gcm_id, user_name FROM live_users WHERE user_zone_id = :zone_id");
 		$stmt->bindParam(':zone_id',$this->zoneId);
 		$stmt->execute();
-		while($result = $stmt->fetch(PDO::FETCH_ASSOC) {
+		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			error_log(json_encode($result));
 		}
 	}
