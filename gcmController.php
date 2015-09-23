@@ -23,7 +23,7 @@ class GcmController {
 		curl_setopt($cURL,CURLOPT_HTTPHEADER,$headers);
 		curl_setopt($cURL,CURLOPT_POSTFIELDS,json_encode($gcmMessage));
 		curl_setopt($cURL,CURLOPT_RETURNTRANSFER,true);
-		echo curl_exec($cURL);
+		error_log(curl_exec($cURL));
 
 	}
 
