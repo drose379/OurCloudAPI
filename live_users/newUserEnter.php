@@ -64,7 +64,7 @@ class newUserEnter {
 			$receivers[] = $user["user_gcm_id"];
 		}
 
-		GcmController::sendGCM(json_encode($receivers),"1",$users);
+		GcmController::sendGCM($receivers,"1",$users);
 	}
 
 
