@@ -31,7 +31,7 @@ class newUserEnter {
 
 	private function insertLiveUser() {
 		$con = DBConnect::get();
-		$stmt = $con->prepare("INSERT INTO live_users (user_gcm_id,user_id,user_zone,user_name,user_photo) VALUES (:gcm,:user_id,:zone,:name,:photo)");
+		$stmt = $con->prepare("INSERT INTO live_users (user_gcm_id,user_id,user_zone_id,user_name,user_photo) VALUES (:gcm,:user_id,:zone_id,:name,:photo)");
 		$stmt->bindParam(':gcm',$this->gcmId);
 		$stmt->bindParam(':user_id',$this->userID);
 		$stmt->bindParam(':zone',$this->zoneName);
