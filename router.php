@@ -13,7 +13,7 @@ require 'getZonePosts.php';
 require 'postImageUpload.php';
 
 //live user system
-require 'newUserEnter.php';
+require 'live_users/newUserEnter.php';
 
 class Router {
 
