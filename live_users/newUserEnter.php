@@ -60,7 +60,7 @@ class newUserEnter {
 	private function sendGcmNotification($users) {
 		$receivers = [];
 		$usersArray = json_decode($users,true);
-		foreach ($users as $user) {
+		foreach (json_decode($users,true) as $user) {
 			$receivers[] = $user["user_gcm_id"];
 		}
 
