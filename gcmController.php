@@ -16,7 +16,7 @@ class GcmController {
 
 		$gcmMessage = [];
 		//$gcmMessage["registration_ids"] = $receivers;
-		$gcmMessage["to"] = "dUIa0JvKUH0:APA91bHY68RjZoGksDTZFN6RnTAdDCQsFzMboDsZANuRMH1O1rbjDwndr9gWwBvYTlO4ZUmIoaXqTER283_9bumXMg8FsnWqi_0GUELVNAdsLoIfi11FzNmkSvb-Kg1Zz6CGEz80h3wf";
+		$gcmMessage["to"] = "eydT_4PY47o:APA91bEo-VfP1sJXPiPmigManCvkbpMpDA4yQGXqdXgWPAH6b3FRFosbVJ1jQcQcOweZlHfiKQusvokFYcaBhfj2dQFlGFKI6zkBOAV5Pk9vR_wKBmIqBfH_dFEwvJy1roDWQQYCakDq";
 		$gcmMessage["data"] = ["type" => $messageType , "message" => $message];		
 
 
