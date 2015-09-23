@@ -12,6 +12,8 @@ class liveUserExit {
 		$zoneName = $post[1];
 
 		$this->removeLiveUser( $userId );
+
+		error_log($userId);
 	}
 
 	public function removeLiveUser( $userId ) {
