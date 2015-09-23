@@ -26,6 +26,8 @@ class newUserEnter {
 		$this->profileImage = $post[4];
 
 		$this->insertLiveUser();
+		$gcmIds = this->getUsersOfZone();
+		$this->sendGcmNotification($gcmIds);
 
 	}
 
@@ -42,10 +44,17 @@ class newUserEnter {
 	}
 
 	private function getUsersOfZone() {
-		//returns a json array of all users in the same zone as the user who just entered
+		$users = [];
+		$con = DBConnect::get();
+		$stmt = $con->prepare("SELECT user_gcm_id, user_name FROM live_users WHERE user_zone_id = :zone_id");
+		$stmt->bindParam(':zone_id',$this->zoneId);
+		$stmt->execute();
+		while($result = $stmt->fetch(PDO::FETCH_ASSOC) {
+			error_log(json_encode($result));
+		}
 	}
 
-	private function sendGcmNotification() {
+	private function sendGcmNotification($users) {
 		//uses cURL to send a notification of type "1" to any client in the same zone as user who just entered
 		//in the "to" section of the POST data to GCM, have an array of all gcm_ids of users in zone who need update
 	}
