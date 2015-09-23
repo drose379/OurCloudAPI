@@ -47,7 +47,7 @@ class newUserEnter {
 	private function getUsersOfZone() {
 		$users = [];
 		$con = DBConnect::get();
-		$stmt = $con->prepare("SELECT user_gcm_id, user_name FROM live_users WHERE user_zone_id = :zone_id");
+		$stmt = $con->prepare("SELECT user_gcm_id, user_name, user_photo FROM live_users WHERE user_zone_id = :zone_id");
 		$stmt->bindParam(':zone_id',$this->zoneId);
 		$stmt->execute();
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
