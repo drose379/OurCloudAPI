@@ -1,6 +1,7 @@
 <?php
 
 require_once 'connect.php';
+require_once 'gcmController.php';
 
 class newUserEnter {
 
@@ -26,8 +27,8 @@ class newUserEnter {
 		$this->profileImage = $post[4];
 
 		$this->insertLiveUser();
-		$gcmIds = $this->getUsersOfZone();
-		$this->sendGcmNotification($gcmIds);
+		$users = $this->getUsersOfZone();
+		$this->sendGcmNotification($users);
 
 	}
 
@@ -50,13 +51,22 @@ class newUserEnter {
 		$stmt->bindParam(':zone_id',$this->zoneId);
 		$stmt->execute();
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			error_log(json_encode($result));
+			$users[] = $result;
 		}
+
+		return json_encode($users);
 	}
 
 	private function sendGcmNotification($users) {
-		//uses cURL to send a notification of type "1" to any client in the same zone as user who just entered
-		//in the "to" section of the POST data to GCM, have an array of all gcm_ids of users in zone who need update
+		$receivers = [];
+		$usersArray = json_decode($users,true);
+		foreach ($users as $user) {
+			$receivers[] = $user["user_gcm_id"];
+		}
+
+		error_log(json_encode($receivers));
+
+		//GcmController::sendGCM($,"1",$users);
 	}
 
 

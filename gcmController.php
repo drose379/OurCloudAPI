@@ -4,6 +4,9 @@
 class GcmController {
 
 	public static function sendGCM( $receivers, $messageType, $message) {
+
+		//loop over users to get the receiving ID of each
+
 		$apiKey = "AIzaSyCDcjNLaOHSmIzcugv2QzPSXJ0kW0N1Ld8";
 		$url = "https://gcm-http.googleapis.com/gcm/send";
 
