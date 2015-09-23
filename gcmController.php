@@ -15,8 +15,7 @@ class GcmController {
 		$headers[] = "Authorization:key=" . $apiKey;
 
 		$gcmMessage = [];
-		//$gcmMessage["registration_ids"] = $receivers;
-		$gcmMessage["to"] = "eydT_4PY47o:APA91bEo-VfP1sJXPiPmigManCvkbpMpDA4yQGXqdXgWPAH6b3FRFosbVJ1jQcQcOweZlHfiKQusvokFYcaBhfj2dQFlGFKI6zkBOAV5Pk9vR_wKBmIqBfH_dFEwvJy1roDWQQYCakDq";
+		$gcmMessage["registration_ids"] = $receivers;
 		$gcmMessage["data"] = ["type" => $messageType , "message" => $message];		
 
 
