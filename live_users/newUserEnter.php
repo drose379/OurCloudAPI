@@ -12,6 +12,10 @@ class newUserEnter {
 		 * adds new user to the db (make sure to correlate user_id to the gcm_id)
 		 * sends a gcm message with updated users for this zone, to all other users in the zone
 		 */
+
+		$post = json_decode(file_get_contents("php://input"),true);
+		error_log(json_encode($post));
+
 	}
 
 	private function insertLiveUser() {
