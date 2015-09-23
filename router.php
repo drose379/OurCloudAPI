@@ -14,6 +14,7 @@ require 'postImageUpload.php';
 
 //live user system
 require 'live_users/newUserEnter.php';
+require 'live_users/userExit.php';
 
 class Router {
 
@@ -34,7 +35,8 @@ class Router {
 			"/getZonePosts" => [new getZonePosts,"run"],
 			"/getPostComments" => [new grabPostComments,"run"],
 			"/postImageUpload" => [new postImageUpload,"run"],
-			"/live/newUserEnter" => [new newUserEnter,"run"]
+			"/live/newUserEnter" => [new newUserEnter,"run"],
+			"/live/userExit" => [new liveUserExit, "run"]
 		];
 	}
 

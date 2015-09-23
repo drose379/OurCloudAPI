@@ -22,7 +22,7 @@ class liveUserExit {
 	}
 
 	public function updateUsers() {
-
+		//pull all users in the zoneName
 	}
 
 
