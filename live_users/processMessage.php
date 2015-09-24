@@ -13,7 +13,7 @@ class processMessage {
 		$message = $post[1];
 
 		$receiverGcmId = $this->getUserGcmID($receiverID);
-		GcmController::sendGcm($receiverGcmId,"1",$message);
+		GcmController::sendGcmPrivateMessage($receiverGcmId,"1",$message);
 
 	}
 
