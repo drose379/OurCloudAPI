@@ -51,11 +51,8 @@ class newUserEnter {
 		$stmt->bindParam(':zone_id',$this->zoneId);
 		$stmt->execute();
 
-		$i = 0;
-
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$users[$i] = $result;
-			$i++;
+			$users[] = $result;
 		}
 
 		return json_encode($users);
@@ -69,7 +66,6 @@ class newUserEnter {
 		}
 
 		GcmController::sendGCM($receivers,"1",$users);
-		error_log($users);
 	}
 
 
