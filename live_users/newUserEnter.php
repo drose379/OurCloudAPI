@@ -34,7 +34,8 @@ class newUserEnter {
 
 	private function insertLiveUser() {
 		$con = DBConnect::get();
-		$stmt = $con->prepare("INSERT INTO live_users (user_gcm_id,user_id,user_zone_id,user_name,user_photo) VALUES (:gcm,:user_id,:zone_id,:name,:photo) ON DUPLICATE KEY IGNORE");
+		$stmt = $con->prepare("INSERT INTO live_users (user_gcm_id,user_id,user_zone_id,user_name,user_photo) VALUES (:gcm,:user_id,:zone_id,:name,:photo)
+								ON DUPLICATE KEY UPDATE user_gcm_id = :gcm");
 		$stmt->bindParam(':gcm',$this->gcmId);
 		$stmt->bindParam(':user_id',$this->userID);
 		$stmt->bindParam(':zone_id',$this->zoneId);
