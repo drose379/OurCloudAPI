@@ -60,8 +60,10 @@ class newUserEnter {
 	private function sendGcmNotification($users) {
 		$receivers = [];
 		$usersArray = json_decode($users,true);
+		$i = 0;
 		foreach (json_decode($users,true) as $user) {
-			$receivers[] = $user["user_gcm_id"];
+			$receivers[$i] = $user["user_gcm_id"];
+			$i++;
 		}
 
 		GcmController::sendGCM($receivers,"1",$users);
