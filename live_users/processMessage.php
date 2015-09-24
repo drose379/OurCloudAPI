@@ -27,7 +27,7 @@ class processMessage {
 		while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$gcmId = $result;
 		}
-		error_log($gcmId);
+		error_log(json_encode($gcmId));
 	}
 
 }
