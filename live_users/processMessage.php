@@ -24,7 +24,7 @@ class processMessage {
 		$stmt = $con->prepare("SELECT user_gcm_id FROM live_users WHERE user_id = :id");
 		$stmt->bindParam(':id',$userId);
 		$stmt->execute();
-		while ($result = $stmt->execute(PDO::FETCH_ASSOC)) {
+		while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$gcmId = $result;
 		}
 		error_log($gcmId);
