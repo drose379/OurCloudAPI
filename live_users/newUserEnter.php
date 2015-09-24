@@ -50,8 +50,12 @@ class newUserEnter {
 		$stmt = $con->prepare("SELECT user_id, user_gcm_id, user_name, user_photo FROM live_users WHERE user_zone_id = :zone_id");
 		$stmt->bindParam(':zone_id',$this->zoneId);
 		$stmt->execute();
+
+		$i = 0;
+
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$users[] = $result;
+			$users[$i] = $result;
+			$i++;
 		}
 
 		return json_encode($users);
@@ -62,7 +66,7 @@ class newUserEnter {
 		$usersArray = json_decode($users,true);
 		$i = 0;
 		foreach (json_decode($users,true) as $user) {
-			$receivers[$i] = $user["user_gcm_id"];
+			$receivers[] = $user["user_gcm_id"];
 			$i++;
 		}
 
