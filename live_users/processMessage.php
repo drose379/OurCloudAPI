@@ -1,0 +1,33 @@
+<?php
+
+require_once 'connect.php';
+require_once 'gcmController.php';
+
+class processMessage {
+
+	public function run() {
+
+		$post = json_decode(file_get_contents("php://input"),true);
+
+		$receiverID = $post[1]; // google id, need to grab gcm id from the db
+		$message = $post[2];
+
+		$this->getUserGcmID($receiverID);
+		//gcmController::sendMessage..
+
+	}
+
+	public function getUserGcmID( $userId ) {
+		$gcmId = null;
+		$con = DBConnect::get();
+		//select user_gcm_id from live_users where user_id = $userId
+		$stmt = $con->prepapre("SELECT user_gcm_id FROM live_users WHERE user_id = :id");
+		$stmt->bindParam(':id',$userId);
+		$stmt->execute();
+		while ($result = $stmt->execute(PDO::FETCH_ASSOC)) {
+			$gcmId = $result;
+		}
+		error_log($gcmId);
+	}
+
+}
