@@ -10,19 +10,19 @@ class processMessage {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$senderID = $post[0];
-		$receiverID = $post[1]; // google id, need to grab gcm id from the db
-		$message = $post[2];
+		$senderName = $post[1];
+		$receiverID = $post[2]; // google id, need to grab gcm id from the db
+		$message = $post[3];
 
 		$receiverGcmId = $this->getUserGcmID($receiverID);
 
-		GcmController::sendGcmPrivateMessage($senderID,$receiverGcmId,"2",$message);
+		GcmController::sendGcmPrivateMessage($senderID,$senderName,$receiverGcmId,"2",$message);
 
 	}
 
 	public function getUserGcmID( $userId ) {
 		$gcmId = null;
 		$con = DBConnect::get();
-		//select user_gcm_id from live_users where user_id = $userId
 		$stmt = $con->prepare("SELECT user_gcm_id FROM live_users WHERE user_id = :id");
 		$stmt->bindParam(':id',$userId);
 		$stmt->execute();
