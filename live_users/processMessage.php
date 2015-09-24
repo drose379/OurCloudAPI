@@ -12,7 +12,7 @@ class processMessage {
 		$receiverID = $post[0]; // google id, need to grab gcm id from the db
 		$message = $post[1];
 
-		$receiverGcmId = this->getUserGcmID($receiverID);
+		$receiverGcmId = $this->getUserGcmID($receiverID);
 		GcmController::sendGcm($receiverGcmId,"1",$message);
 
 	}
