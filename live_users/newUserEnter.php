@@ -53,7 +53,6 @@ class newUserEnter {
 
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$users[] = $result;
-			$i++;
 		}
 
 		return json_encode($users);
