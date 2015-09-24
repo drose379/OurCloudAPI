@@ -21,7 +21,7 @@ class processMessage {
 		$gcmId = null;
 		$con = DBConnect::get();
 		//select user_gcm_id from live_users where user_id = $userId
-		$stmt = $con->prepapre("SELECT user_gcm_id FROM live_users WHERE user_id = :id");
+		$stmt = $con->prepare("SELECT user_gcm_id FROM live_users WHERE user_id = :id");
 		$stmt->bindParam(':id',$userId);
 		$stmt->execute();
 		while ($result = $stmt->execute(PDO::FETCH_ASSOC)) {
