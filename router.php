@@ -15,6 +15,7 @@ require 'postImageUpload.php';
 //live user system
 require 'live_users/newUserEnter.php';
 require 'live_users/userExit.php';
+require 'live_users/processMessage.php';
 
 class Router {
 
@@ -36,7 +37,8 @@ class Router {
 			"/getPostComments" => [new grabPostComments,"run"],
 			"/postImageUpload" => [new postImageUpload,"run"],
 			"/live/newUserEnter" => [new newUserEnter,"run"],
-			"/live/userExit" => [new liveUserExit, "run"]
+			"/live/userExit" => [new liveUserExit, "run"],
+			"/live/privateMessage" => [new processMessage,"run"]
 		];
 	}
 
