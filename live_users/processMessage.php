@@ -12,8 +12,8 @@ class processMessage {
 		$receiverID = $post[0]; // google id, need to grab gcm id from the db
 		$message = $post[1];
 
-		$this->getUserGcmID($receiverID);
-		//gcmController::sendMessage..
+		$receiverGcmId = this->getUserGcmID($receiverID);
+		GcmController::sendGcm($receiverGcmId,"1",$message);
 
 	}
 
@@ -27,7 +27,7 @@ class processMessage {
 		while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$gcmId = $result;
 		}
-		error_log($gcmId["user_gcm_id"]);
+		return $gcmId["user_gcm_id"];
 	}
 
 }

@@ -14,12 +14,6 @@ class GcmController {
 		GcmController::sendGCM($receivers,"1",$users);
 	}
 
-	public static function sendGcmPrivateMessage(/* ..... */) {
-		/*
-		 * 
-		 */
-	}
-
 	public static function sendGCM( $receivers, $messageType, $message) {
 
 		//loop over users to get the receiving ID of each
