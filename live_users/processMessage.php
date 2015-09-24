@@ -9,12 +9,13 @@ class processMessage {
 
 		$post = json_decode(file_get_contents("php://input"),true);
 
-		$receiverID = $post[0]; // google id, need to grab gcm id from the db
-		$message = $post[1];
+		$senderID = $post[0];
+		$receiverID = $post[1]; // google id, need to grab gcm id from the db
+		$message = $post[2];
 
 		$receiverGcmId = $this->getUserGcmID($receiverID);
 
-		GcmController::sendGcmPrivateMessage($receiverGcmId,"2",$message);
+		GcmController::sendGcmPrivateMessage($senderID,$receiverGcmId,"2",$message);
 
 	}
 

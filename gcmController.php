@@ -14,7 +14,7 @@ class GcmController {
 		GcmController::sendGCM($receivers,"1",$users);
 	}
 
-	public static function sendGCMPrivateMessage( $receiver, $messageType, $message ) {
+	public static function sendGCMPrivateMessage( $senderID, $receiver, $messageType, $message ) {
 
 		$apiKey = "AIzaSyCDcjNLaOHSmIzcugv2QzPSXJ0kW0N1Ld8";
 		$url = "https://gcm-http.googleapis.com/gcm/send";
@@ -25,7 +25,7 @@ class GcmController {
 
 		$gcmMessage = [];
 		$gcmMessage["to"] = $receiver;
-		$gcmMessage["data"] = ["type" => $messageType , "message" => $message];		
+		$gcmMessage["data"] = ["type" => $messageType , "message" => $message, "senderId" => $senderID];		
 
 
 		$cURL = curl_init($url);
