@@ -69,6 +69,7 @@ class newUserEnter {
 		}
 
 		GcmController::sendGCM($receivers,"1",$users);
+		error_log($users);
 	}
 
 
