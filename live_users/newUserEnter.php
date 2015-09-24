@@ -28,7 +28,7 @@ class newUserEnter {
 
 		$this->insertLiveUser();
 		$users = $this->getUsersOfZone();
-		$this->sendGcmNotification($users);
+		GcmController::sendGcmUserUpdate($users);
 
 	}
 
@@ -58,16 +58,5 @@ class newUserEnter {
 
 		return json_encode($users);
 	}
-
-	private function sendGcmNotification($users) {
-		$receivers = [];
-		$usersArray = json_decode($users,true);
-		foreach (json_decode($users,true) as $user) {
-			$receivers[] = $user["user_gcm_id"];
-		}
-
-		GcmController::sendGCM($receivers,"1",$users);
-	}
-
 
 }

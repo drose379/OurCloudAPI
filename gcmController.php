@@ -3,6 +3,23 @@
 
 class GcmController {
 
+
+	public static function sendGcmUserUpdate( $users ) {
+		$receivers = [];
+		$usersArray = json_decode($users,true);
+		foreach (json_decode($users,true) as $user) {
+			$receivers[] = $user["user_gcm_id"];
+		}
+
+		GcmController::sendGCM($receivers,"1",$users);
+	}
+
+	public static function sendGcmPrivateMessage(/* ..... */) {
+		/*
+		 * 
+		 */
+	}
+
 	public static function sendGCM( $receivers, $messageType, $message) {
 
 		//loop over users to get the receiving ID of each
