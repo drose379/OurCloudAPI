@@ -4,6 +4,8 @@ class postImageUpload {
 	
 	public function run() {
 
+		ini_set('upload_max_filesize','20M');
+
 		$imageTmpName = $_FILES["photo"]["tmp_name"];
 
 		$imageResource = imagecreatefromjpeg($imageTmpName);
