@@ -23,7 +23,7 @@ class grabPostComments {
 			post_comments.comment_time,post_comments.comment 
 			FROM post_comments
 			JOIN users ON users.user_id = post_comments.user_id 
-			WHERE post_id = :postId");
+			WHERE post_id = :postId ORDER BY comment_time");
 
 		$stmt->bindParam(':postId',$postId);
 		$stmt->execute();
