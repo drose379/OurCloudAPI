@@ -17,7 +17,7 @@ class processMessage {
 
 		$receiverGcmId = $this->getUserGcmID($receiverID);
 
-		GcmController::sendGcmPrivateMessage($senderID,$senderName,$senderImage$receiverGcmId,"2",$message);
+		GcmController::sendGcmPrivateMessage($senderID,$senderName,$senderImage,$receiverGcmId,"2",$message);
 
 	}
 
