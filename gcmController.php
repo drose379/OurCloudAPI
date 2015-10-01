@@ -14,7 +14,7 @@ class GcmController {
 		GcmController::sendGCM($receivers,"1",$users);
 	}
 
-	public static function sendGCMPrivateMessage( $senderID, $senderName, $senderImage, $receiver, $messageType, $message ) {
+	public static function sendGCMPrivateMessage( $senderID, $receiver, $messageType, $message ) {
 
 		$apiKey = "AIzaSyCDcjNLaOHSmIzcugv2QzPSXJ0kW0N1Ld8";
 		$url = "https://gcm-http.googleapis.com/gcm/send";
