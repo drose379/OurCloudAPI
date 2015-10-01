@@ -10,10 +10,8 @@ class processMessage {
 		$post = json_decode(file_get_contents("php://input"),true);
 
 		$senderID = $post[0];
-		$senderName = $post[1];
-		$senderImage = $post[2];
-		$receiverID = $post[3];
-		$message = $post[4];
+		$receiverID = $post[1];
+		$message = $post[2];
 
 		$receiverGcmId = $this->getUserGcmID($receiverID);
 
