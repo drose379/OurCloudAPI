@@ -25,7 +25,7 @@ class GcmController {
 
 		$gcmMessage = [];
 		$gcmMessage["to"] = $receiver;
-		$gcmMessage["data"] = ["type" => $messageType , "senderName" => $senderName, "senderImage" => $senderImage "message" => $message, "senderId" => $senderID];		
+		$gcmMessage["data"] = ["type" => $messageType , "senderName" => $senderName, "senderImage" => $senderImage, "message" => $message, "senderId" => $senderID];		
 
 
 		$cURL = curl_init($url);
