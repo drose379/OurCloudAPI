@@ -1,7 +1,7 @@
 <?php
 
 require 'userSignin.php';
-require 'newPost.php';
+require 'newPostText.php';
 require 'newPostWithImage.php';
 require 'newComment.php';
 require 'updateZoneName.php';
