@@ -50,7 +50,7 @@ class newPost {
 	 * Grab all receivers for given zone
 	 * Use GCM controller to send them a type 3 message, telling clients there is a new post to be viewed
 	 */
-	public function updateClients( $zone ) {
+	public function updateZoneClients( $zone ) {
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT user_gcm_id FROM live_users WHERE user_zone_id = :zone");
 		$stmt->bindParam( ':zone', $zone );
@@ -63,7 +63,6 @@ class newPost {
 		}
 
 		GcmController::sendGcm( $receivers, "3", "New" );
-
 
 	}
 
