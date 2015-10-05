@@ -3,7 +3,7 @@
 require_once 'connect.php';
 require_once 'gcmController.php';
 
-class newPost {
+class newPost extends newPost {
 
 	public function run() {
 		$post = json_decode(file_get_contents("php://input"),true);
@@ -20,8 +20,7 @@ class newPost {
 			$this->insertWithoutExp($userId,$zone,$postText,$timeMillis);
 		}
 
-		$this->updateZoneClients( $zone );
-
+		parent::updateZoneClients( $zone );
 		
 	}
 
@@ -46,24 +45,6 @@ class newPost {
 		$stmt->execute();
 	}
 
-	/**
-	 * Grab all receivers for given zone
-	 * Use GCM controller to send them a type 3 message, telling clients there is a new post to be viewed
-	 */
-	public function updateZoneClients( $zone ) {
-		$con = DBConnect::get();
-		$stmt = $con->prepare("SELECT user_gcm_id FROM live_users WHERE user_zone_id = :zone");
-		$stmt->bindParam( ':zone', $zone );
-		$stmt->execute();
 
-		$receivers = [];
-
-		while ( $result = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-			$receivers[] = $result["user_gcm_id"];
-		}
-
-		GcmController::sendGcm( $receivers, "3", "New" );
-
-	}
 
 }
