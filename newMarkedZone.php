@@ -20,6 +20,8 @@ class markZone {
 		$stmt->bindParam(':userId',$userId);
 		$stmt->bindParam(':zoneId',$zoneId);
 		$stmt->execute();
+
+		error_log("marked zone");
 	}
 
 
