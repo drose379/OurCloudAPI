@@ -5,7 +5,9 @@ require_once 'gcmController.php';
 
 class newPost {
 
-
+	/**
+	 * Grab receiver IDs, give them type 3 update 
+	 */
 	protected function updateZoneClients( $zone ) 
 	{
 		$con = DBConnect::get();
