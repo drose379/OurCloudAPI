@@ -18,6 +18,7 @@ class markZone {
 	}
 
 	public function insertMarkedZone( $userId, $zoneId ) {
+		$con = DBConnect::get();
 		$stmt = $con->prepare("INSERT INTO user_marked_zones (user_id,user_zone_id) VALUES (:userId, :zoneId)");
 		$stmt->bindParam(':userId',$userId);
 		$stmt->bindParam(':zoneId',$zoneId);
