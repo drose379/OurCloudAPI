@@ -1,6 +1,7 @@
  <?php
 
 require_once 'connect.php';
+require_once 'newPost.php';
 require_once 'gcmController.php';
 
 class newPost extends newPost {
