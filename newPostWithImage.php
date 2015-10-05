@@ -1,5 +1,8 @@
 <?php
 
+require_once 'connect.php';
+require_once 'gcmController.php';
+
 class newPostWithImage {
 
 	public function run() {
@@ -18,7 +21,7 @@ class newPostWithImage {
 			$this->insertTextWithPhoto($userId,$zone,$postText,$postImageUrl,$postTimeMillis);
 		}
 		
-
+		$this->updateZoneClients( $zone );
 		
 
 
@@ -56,6 +59,23 @@ class newPostWithImage {
 		$stmt->bindParam(':zone',$zone);
 		$stmt->bindParam(':postImage',$postImageUrl);
 		$stmt->bindParam(':postTime',$postTimeMillis);
+	}
+
+	/** this is repeated in newPost.php and here, need to fix that, maybe add to gcmController instead? **/
+	public function updateZoneClients( $zone ) {
+		$con = DBConnect::get();
+		$stmt = $con->prepare("SELECT user_gcm_id FROM live_users WHERE user_zone_id = :zone");
+		$stmt->bindParam( ':zone', $zone );
+		$stmt->execute();
+
+		$receivers = [];
+
+		while ( $result = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+			$receivers[] = $result["user_gcm_id"];
+		}
+
+		GcmController::sendGcm( $receivers, "3", "New" );
+
 	}
 
 
