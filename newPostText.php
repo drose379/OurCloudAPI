@@ -4,7 +4,7 @@ require_once 'connect.php';
 require_once 'newPost.php';
 require_once 'gcmController.php';
 
-class newPost extends newPost {
+class newPostText extends newPost {
 
 	public function run() {
 		$post = json_decode(file_get_contents("php://input"),true);

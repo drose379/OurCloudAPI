@@ -28,7 +28,7 @@ class Router {
 	public function loadRoutes() {
 		$this->routes = [
 			"/userSignin" => [new userSignin,"run"],
-			"/newPost" => [new newPost,"run"],
+			"/newPost" => [new newPostText,"run"],
 			"/newPostWithImage" => [new newPostWithImage,"run"],
 			"/newComment" => [new newComment,"run"],
 			"/getZoneId" => [new zoneIdGrabber,"run"],
