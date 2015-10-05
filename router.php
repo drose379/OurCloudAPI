@@ -12,6 +12,8 @@ require 'getZonePosts.php';
 
 require 'postImageUpload.php';
 
+require 'newMarkedZone.php';
+
 //live user system
 require 'live_users/newUserEnter.php';
 require 'live_users/userExit.php';
@@ -36,6 +38,7 @@ class Router {
 			"/getZonePosts" => [new getZonePosts,"run"],
 			"/getPostComments" => [new grabPostComments,"run"],
 			"/postImageUpload" => [new postImageUpload,"run"],
+			"/markZone" => [new markZone,"run"],
 			"/live/newUserEnter" => [new newUserEnter,"run"],
 			"/live/userExit" => [new liveUserExit, "run"],
 			"/live/privateMessage" => [new processMessage,"run"]
