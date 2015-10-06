@@ -26,6 +26,7 @@ class grabUserPosts {
 			$posts[] = $post;
 		}
 
+		return $posts;
 
 	}
 
