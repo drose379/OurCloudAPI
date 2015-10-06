@@ -25,7 +25,7 @@ class grabUserPosts {
 		$stmt->execute();
 
 		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-			$posts[] = $post;
+			$posts[] = $row;
 		}
 
 		return $posts;
@@ -33,6 +33,7 @@ class grabUserPosts {
 	}
 
 	public function addPostType($grabbedPosts) {
+		
 		foreach($grabbedPosts as &$post) {
 			/**
 			* loop over each post, check what items are null (if any)
