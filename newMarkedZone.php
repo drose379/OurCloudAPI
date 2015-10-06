@@ -13,8 +13,6 @@ class markZone {
 
 		$this->insertMarkedZone( $userId, $zoneId );
 
-		error_log("Run called");
-
 	}
 
 	public function insertMarkedZone( $userId, $zoneId ) {
@@ -23,8 +21,6 @@ class markZone {
 		$stmt->bindParam(':userId',$userId);
 		$stmt->bindParam(':zoneId',$zoneId);
 		$stmt->execute();
-
-		error_log("marked zone");
 	}
 
 
