@@ -8,14 +8,14 @@ class grabUserPosts {
 		$post = json_decode( file_get_contents("php://input") , true );
 		$userId = $post[0];
 
-		$posts = $this->grabUserPosts( $userId );
+		$posts = $this->grabPosts( $userId );
 
 		$this->addPostType( $posts );
 
 		error_log(implode(",",$posts));
 	}
 
-	public function grabUserPosts( $userId ) {
+	public function grabPosts( $userId ) {
 		$con = DBConnect::get();
 
 		$posts = [];
