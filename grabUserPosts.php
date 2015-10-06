@@ -12,7 +12,7 @@ class grabUserPosts {
 
 		$this->addPostType( $posts );
 
-		error_log($posts);
+		error_log(implode(",",$posts));
 	}
 
 	public function grabUserPosts( $userId ) {
