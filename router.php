@@ -14,6 +14,7 @@ require 'postImageUpload.php';
 
 require 'newMarkedZone.php';
 require 'grabMarkedzones.php';
+require 'grabUserPosts.php';
 
 //live user system
 require 'live_users/newUserEnter.php';
@@ -41,6 +42,7 @@ class Router {
 			"/postImageUpload" => [new postImageUpload,"run"],
 			"/markZone" => [new markZone,"run"],
 			"/grabMarkedZones" => [new grabMarkedZones,"run"],
+			"/grabUserPosts" => [new grabUserPosts,"run"]
 			"/live/newUserEnter" => [new newUserEnter,"run"],
 			"/live/userExit" => [new liveUserExit, "run"],
 			"/live/privateMessage" => [new processMessage,"run"]
