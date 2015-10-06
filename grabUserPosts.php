@@ -11,6 +11,8 @@ class grabUserPosts {
 		$posts = $this->grabUserPosts( $userId );
 
 		$this->addPostType( $posts );
+
+		error_log($posts);
 	}
 
 	public function grabUserPosts( $userId ) {
