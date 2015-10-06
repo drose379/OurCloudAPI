@@ -5,7 +5,7 @@ require_once 'connect.php';
 class grabUserPosts {
 
 	public function run() {
-		$post = json_decode( file_get_contents("") , true );
+		$post = json_decode( file_get_contents("php://input") , true );
 		$userId = $post[0];
 
 		$posts = $this->grabUserPosts( $userId );
