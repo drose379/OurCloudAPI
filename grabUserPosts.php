@@ -20,7 +20,7 @@ class grabUserPosts {
 
 		$posts = [];
 
-		$stmt = $con->prepare("SELECT zone,postText,postImage,postTime FROM zone_posts WHERE user_id = :user_id");
+		$stmt = $con->prepare("SELECT ID,zone,postText,postImage,postTime FROM zone_posts WHERE user_id = :user_id");
 		$stmt->bindParam(':user_id',$userId);
 		$stmt->execute();
 
