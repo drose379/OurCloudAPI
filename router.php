@@ -21,6 +21,8 @@ require 'live_users/newUserEnter.php';
 require 'live_users/userExit.php';
 require 'live_users/processMessage.php';
 
+require 'newPostView.php';
+
 class Router {
 
 	private $routes = [];
@@ -45,7 +47,8 @@ class Router {
 			"/grabUserPosts" => [new grabUserPosts,"run"],
 			"/live/newUserEnter" => [new newUserEnter,"run"],
 			"/live/userExit" => [new liveUserExit, "run"],
-			"/live/privateMessage" => [new processMessage,"run"]
+			"/live/privateMessage" => [new processMessage,"run"],
+			"/newPostView" => [new newPostView,"run"]
 		];
 	}
 
