@@ -74,7 +74,7 @@ class grabUserPosts {
 	public function addPostViews( $posts ) {
 		$con = DBConnect::get();
 
-		$stmt = $con->prepare("SELECT user_id FROM post_views WHERE post_id = :post_id");
+		$stmt = $con->prepare("SELECT post_views.user_id, users.user_name FROM post_views JOIN users ON post_views.user_id = users.user_id user WHERE post_id = :post_id"); 
 
 		foreach( $posts as &$post ) {
 			$views = [];
@@ -82,7 +82,7 @@ class grabUserPosts {
 			$stmt->execute();
 
 			while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-				$views[] = $row["user_id"];
+				$views[] = $row["user_name"];
 			}
 
 			$post["views"] = $views;
