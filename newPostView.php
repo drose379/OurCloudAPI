@@ -32,7 +32,7 @@ class newPostView {
 			$newView = true;
 		}
 
-		return $newView
+		return $newView;
 	}
 
 	public function addNewView( $postID, $userID ) {
