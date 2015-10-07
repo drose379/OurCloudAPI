@@ -4,15 +4,23 @@ require_once 'connect.php';
 
 class grabUserPosts {
 
+	/**
+	 * Need to add functionality to get the amount of views for each post, and the userID of each view
+	 * Attach an array of userIDs who have viewed the post to each post array, as $post["views"] = array
+	 * 
+	 */
+
 	public function run() {
 		$post = json_decode( file_get_contents("php://input") , true );
 		$userId = $post[0];
 
 		$posts = $this->grabPosts( $userId );
 
-		$this->addPostType( $posts );
+		$posts = $this->addPostType( $posts );
+		$posts = $this->addPostViews( $posts );
 
-		error_log(implode(",",$posts));
+		echo json_encode( $posts );
+
 	}
 
 	public function grabPosts( $userId ) {
@@ -32,7 +40,7 @@ class grabUserPosts {
 
 	}
 
-	public function addPostType($grabbedPosts) {
+	public function addPostType( $grabbedPosts ) {
 		
 		foreach($grabbedPosts as &$post) {
 			/**
@@ -59,7 +67,28 @@ class grabUserPosts {
 			$post["postType"] = $type; // need to use the & sign that uses a reference to the origional array (& references orig array)
 		}
 
-		echo json_encode($grabbedPosts);
+		return $grabbedPosts;
+
+	}
+
+	public function addPostViews( $posts ) {
+		$con = DBConnect::get();
+
+		$stmt = $con->prepare("SELECT user_id FROM post_views WHERE post_id = :post_id");
+
+		foreach( $posts as &$post ) {
+			$views = [];
+			$stmt->bindParam(':post_id',$post["ID"]);
+			$stmt->execute();
+
+			while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+				$views[] = $row["user_id"];
+			}
+
+			$post["views"] = $views;
+		}
+
+		return $posts;
 
 	}
 
