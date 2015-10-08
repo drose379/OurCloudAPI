@@ -17,7 +17,7 @@ class userSignIn {
 		$userName = $post[2];
 		$userPhoto = $this->formatUrl($post[3]);
 
-		if(!$this->userExists($userId)) {$this->newUser($userId,$userName,$userPhoto);}
+		if(!$this->userExists($userId)) {$this->newUser($userId,$gcmId,$userName,$userPhoto);}
 
 	}
 
@@ -43,10 +43,11 @@ class userSignIn {
 	}
 
 
-	public function newUser($userId,$userName,$userPhoto) {
+	public function newUser($userId,$gcmId,$userName,$userPhoto) {
 		$con = DBCOnnect::get();
-		$stmt = $con->prepare("INSERT INTO users (user_id,user_name,user_image) VALUES (:userid,:username,:userimage)");
+		$stmt = $con->prepare("INSERT INTO users (user_id,user_gcm_id,user_name,user_image) VALUES (:userid,:gcm,:username,:userimage)");
 		$stmt->bindParam(':userid',$userId);
+		$stmt->bindParam(':gcm',$gcmId);
 		$stmt->bindParam(':username',$userName);
 		$stmt->bindParam(':userimage',$userPhoto);
 		$stmt->execute();
