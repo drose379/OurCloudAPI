@@ -1,6 +1,7 @@
 <?php
 
 require_once 'connect.php';
+require_once 'gcmController.php'
 
 class newComment {
 
@@ -25,4 +26,10 @@ class newComment {
 		$stmt->execute();
 	}
 
+	/**
+	 *send a GCM message to the OP of the post giving them a notification that someone commented on their post
+	 *grab the userId who is the OP of this post, via the PostID
+	 *check if the userID appears in the live_users table (thats where their gcm id will be found)
+	 *Issue, if user is online, they cannot get notifications? Need to save GCM id in the users table also
+	*/
 }

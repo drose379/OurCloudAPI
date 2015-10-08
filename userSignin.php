@@ -13,8 +13,9 @@ class userSignIn {
 	public function run() {
 		$post = json_decode(file_get_contents("php://input"),true);
 		$userId = $post[0];
-		$userName = $post[1];
-		$userPhoto = $this->formatUrl($post[2]);
+		$gcmId = $post[1];
+		$userName = $post[2];
+		$userPhoto = $this->formatUrl($post[3]);
 
 		if(!$this->userExists($userId)) {$this->newUser($userId,$userName,$userPhoto);}
 
