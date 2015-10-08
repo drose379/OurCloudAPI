@@ -1,7 +1,7 @@
 <?php
 
 require_once 'connect.php';
-require_once 'gcmController.php'
+require_once 'gcmController.php';
 
 class newComment {
 
