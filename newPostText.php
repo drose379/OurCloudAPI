@@ -21,6 +21,7 @@ class newPostText extends newPost {
 			$this->insertWithoutExp($userId,$zone,$postText,$timeMillis);
 		}
 
+		$this->sendNewPostId( $userId,$timeMillis );
 		parent::updateZoneClients( $zone );
 		
 	}
@@ -44,6 +45,22 @@ class newPostText extends newPost {
 		$stmt->bindParam(':postText',$post);
 		$stmt->bindParam(':time',$postTime);
 		$stmt->execute();
+	}
+
+	public function sendNewPostId( $userId,$timeMillis ) {
+		$postID = null;
+		$con = DBConnect::get();
+		$stmt = $con->prepare("SELECT ID FROM zone_posts WHERE user_id = :id AND postTime = :time");
+		$stmt->bindParam(':id', $userId);
+		$stmt->bindParam(':time',$timeMillis);
+		$stmt->execute();
+
+		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+			$postID = $row["ID"];
+		}
+
+		echo $postID;
+
 	}
 
 

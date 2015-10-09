@@ -54,6 +54,7 @@ class newComment {
 		$stmt = $con->prepare("SELECT user_gcm_id FROM users WHERE user_id = :userId");
 		$stmt->bindParam(':userId',$OPUserID);
 		$stmt->execute();
+		
 		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 			$gcmId = $row["user_gcm_id"];
 		}
