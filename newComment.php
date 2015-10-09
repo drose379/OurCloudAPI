@@ -43,7 +43,7 @@ class newComment {
 
 		//$stmt = $con->prepare("SELECT user_gcm_id FROM users WHERE user_id = :user_id"); // this is the user id for the person making the comment, need to get the id for the OP of the post (2 queries)
 
-		$stmt = $con->prepare("SELECT user_id FROM zone_posts WHERE post_id = :post_id");
+		$stmt = $con->prepare("SELECT user_id FROM zone_posts WHERE ID = :post_id");
 
 		$stmt->bindParam(':post_id',$postId);
 		$stmt->execute();
