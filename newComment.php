@@ -41,10 +41,9 @@ class newComment {
 
 		$con = DBConnect::get();
 
-		error_log( $postId );
 		//$stmt = $con->prepare("SELECT user_gcm_id FROM users WHERE user_id = :user_id"); // this is the user id for the person making the comment, need to get the id for the OP of the post (2 queries)
 		
-		$stmt = $con->prepare("SELECT users.user_gcm_id FROM users JOIN zone_posts.user_id ON users.user_id = zone_posts.user_id WHERE zone_posts.ID = :post_id");
+		$stmt = $con->prepare("SELECT users.user_gcm_id FROM users JOIN users.user_id ON zone_posts.user_id = zone_posts.user_id WHERE zone_posts.ID = :post_id");
 
 		$stmt->bindParam(':post_id',$postId);
 		$stmt->execute();
