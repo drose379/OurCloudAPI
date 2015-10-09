@@ -36,23 +36,29 @@ class newComment {
 	*/
 
 	public function updatePostOP( $commenterID, $postId ) {
-
+		$OPUserID = null;
 		$gcmId = null;
 
 		$con = DBConnect::get();
 
-		//$stmt = $con->prepare("SELECT user_gcm_id FROM users WHERE user_id = :user_id"); // this is the user id for the person making the comment, need to get the id for the OP of the post (2 queries)
+		$stmt = $con->prepare( "SELECT user_id FROM zone_posts WHERE ID = :postId" );
 
-		//$stmt = $con->prepare("SELECT user_id FROM zone_posts WHERE ID = :post_id"); // replace with join statement to get the user_gcm_id from users according to the OPS user_id
-		$stmt = $con->prepare("SELECT user_gcm_id FROM zone_posts JOIN zone_posts.user_id ON users.user_id = zone_posts.user_id WHERE ID = :postId");
 
 		$stmt->bindParam(':postId',$postId);
 		$stmt->execute();
 
 		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-			$gcmId = $row["user_id"];
-			error_log( $row["user_id"] );
+			$OPUserID = $row["user_id"];
 		}
+
+		$stmt = $con->prepare("SELECT user_gcm_id FROM users WHERE user_id = :userId");
+		$stmt->bindParam(':userId',$OPUserID);
+		$stmt->execute();
+		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+			$gcmId = $row["user_gcm_id"];
+		}
+
+		error_log( $gcmId );
 
 		GcmController::sendGCM( $gcmId, "4", $postId );
 
