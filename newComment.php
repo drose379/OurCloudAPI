@@ -50,7 +50,7 @@ class newComment {
 
 		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 			$gcmId = $row["user_id"];
-			error_log( $gcmId );
+			error_log( $row["user_id"] );
 		}
 
 		GcmController::sendGCM( $gcmId, "4", $postId );
