@@ -46,7 +46,7 @@ class newComment {
 		//$stmt = $con->prepare("SELECT user_id FROM zone_posts WHERE ID = :post_id"); // replace with join statement to get the user_gcm_id from users according to the OPS user_id
 		$stmt = $con->prepare("SELECT user_gcm_id FROM zone_posts JOIN zone_posts.user_id ON users.user_id = zone_posts.user_id WHERE ID = :postId");
 
-		$stmt->bindParam(':post_id',$postId);
+		$stmt->bindParam(':postId',$postId);
 		$stmt->execute();
 
 		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
