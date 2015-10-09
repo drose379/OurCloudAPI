@@ -14,6 +14,8 @@ class newComment {
 		$comment = $post[3];
 
 		$this->addComment($userId,$postId,$commentTimeMillis,$comment);
+
+		$this->updatePostOP( $userId,$postId );
 	}
 
 	public function addComment($userId,$postId,$commentTimeMillis,$comment) {
@@ -32,4 +34,21 @@ class newComment {
 	 *check if the userID appears in the live_users table (thats where their gcm id will be found)
 	 *Issue, if user is online, they cannot get notifications? Need to save GCM id in the users table also
 	*/
+
+	public function updatePostOP( $userID, $postId ) {
+
+		$gcmId = null;
+
+		$con = DBConnect::get();
+		$stmt = $con->prepare("SELECT user_gcm_id FROM users WHERE user_id = :user_id");
+		$stmt->bindParam(':user_id',$userID);
+		$stmt->execute();
+
+		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+			$gcmId = $row["user_gcm_id"];
+		}
+
+		GcmController::sendMessage( $gcmId, "4", $postId );
+
+	}
 }
