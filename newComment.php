@@ -60,7 +60,7 @@ class newComment {
 
 		error_log( $gcmId );
 
-		GcmController::sendGCM( $gcmId, "4", $postId );
+		GcmController::sendGCM( json_encode($gcmId), "4", $postId );
 
 	}
 }
