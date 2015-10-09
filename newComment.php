@@ -48,6 +48,7 @@ class newComment {
 
 		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 			$gcmId = $row["user_gcm_id"];
+			error_log( $gcmId );
 		}
 
 		GcmController::sendGCM( $gcmId, "4", $postId );
