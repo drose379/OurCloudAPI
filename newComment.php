@@ -50,7 +50,7 @@ class newComment {
 			$gcmId = $row["user_gcm_id"];
 		}
 
-		GcmController::sendMessage( $gcmId, "4", $postId );
+		GcmController::sendGCM( $gcmId, "4", $postId );
 
 	}
 }
