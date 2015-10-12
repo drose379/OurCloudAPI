@@ -56,6 +56,7 @@ class zoneIdGrabber {
 			$matchedZoneId = $this->validateMatcingSSIDs($matchingSSIDZones);
 		} else if ( sizeof( $matchingSSIDZones == 1 ) ) {
 			$matchingZoneId = $matchingSSIDZones[0]["ID"];
+			error_log("size of is 1");
 		} else {
 			$matchedZoneId = null;
 		}
