@@ -49,13 +49,13 @@ class zoneIdGrabber {
 		$stmt->execute();
 
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$matchingSSIDZones[] = $result;
+			$matchingZones[] = $result;
 		}
 
-		if (sizeof($matchingSSIDZones) > 1) {
-			$matchedZoneId = $this->validateMatcingSSIDs($matchingSSIDZones);
-		} else if ( sizeof( $matchingSSIDZones == 1 ) ) {
-			$matchingZoneId = $matchingSSIDZones[0]["ID"];
+		if (sizeof($matchingZones) > 1) {
+			$matchedZoneId = $this->validateMatcingSSIDs($matchingZones);
+		} else if ( sizeof( $matcihngZones == 1 ) ) {
+			$matchingZoneId = $matchingZones[0]["ID"];
 			error_log("size of is 1");
 		} else {
 			$matchedZoneId = null;
