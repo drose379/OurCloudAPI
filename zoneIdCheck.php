@@ -24,6 +24,7 @@ class zoneIdGrabber {
 		$zoneId = $this->grabExistingZone($con);
 
 		if($zoneId == null) {
+			error_log("Creating a new zone");
 			$zoneId = $this->createNewZone($con);
 		}
 
