@@ -1,6 +1,6 @@
 <?php
 
-require 'connect.php';
+require_once 'connect.php';
 
 class zoneIdCheck2 {
 
@@ -13,11 +13,11 @@ class zoneIdCheck2 {
 		$this->zoneSSID = $post[0];
 		$networksInRange = array_unique($post[1]);
 
-		$networksInRange = $this->removeNetworkBlanks( $networksInRange );  //untested
+		//$networksInRange = $this->removeNetworkBlanks( $networksInRange );  //untested
 
 		$zoneInfo = $this->getZoneInfo( $networksInRange );
 
-		echo $zoneInfo;
+		echo json_encode( $zoneInfo );
 	}
 
 	public function removeNetworkBlanks( $networks ) {
