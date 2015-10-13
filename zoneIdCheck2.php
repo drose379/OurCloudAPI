@@ -3,6 +3,7 @@
 class zoneIdCheck2 {
 
 	private $zoneSSID;
+	private $networksInRange;
 
 	public function run() {
 
