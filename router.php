@@ -8,6 +8,7 @@ require 'updateZoneName.php';
 require 'grabPostComments.php';
 
 require 'zoneIdCheck.php';
+require 'zoneIdCheck2.php';
 require 'getZonePosts.php';
 
 require 'postImageUpload.php';
@@ -37,7 +38,7 @@ class Router {
 			"/newPost" => [new newPostText,"run"],
 			"/newPostWithImage" => [new newPostWithImage,"run"],
 			"/newComment" => [new newComment,"run"],
-			"/getZoneId" => [new zoneIdGrabber,"run"],
+			"/getZoneId" => [new zoneIdCheck2,"run"],
 			"/updateZoneName" => [new zoneNameUpdate,"run"],
 			"/getZonePosts" => [new getZonePosts,"run"],
 			"/getPostComments" => [new grabPostComments,"run"],

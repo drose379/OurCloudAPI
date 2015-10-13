@@ -53,16 +53,9 @@ class zoneIdGrabber {
 			$matchingZones[] = $result;
 		}
 
-		if (sizeof($matchingZones) > 1) {
-			$matchedZoneId = $this->validateMatcingSSIDs($matchingZones);
-		} else if ( sizeof( $matchingZones == 1 ) ) {
-			$matchingZoneId = $matchingZones[0]["ID"];
-			error_log("size of is 1");
-		} else {
-			$matchedZoneId = null;
-		}
+		//testing, not yet pushed or tested
+		error_log( json_encode( $matchingZones ) );
 
-		return $matchedZoneId;
 	}
 
 	public function validateMatcingSSIDs($matchingZones) {
